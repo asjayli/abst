@@ -13,9 +13,9 @@ tags: [abst, testing]
 
 ## 一、背景与总量
 
-- **对象**：bko 业务系统（tRPC + Next.js，另有 Android 端），路径 `/code/app/bko`。
+- **对象**：bko 业务系统（tRPC + Next.js，另有 Android 端）。
 - **既有测试体系**：单测 330 个全绿；web E2E 行覆盖约 34%；Android 测试刚起步。
-- **ABST 落地物**（首轮在 `/code/app/bko/e2e/abst/`，二轮起迁至独立顶层 `/code/app/bko/abst/`）：`registry.json`（声明注册表）、`glossary.md`（词汇表）、`probes.mjs`（探针）、`verdict.mjs`（判定脚本）、`abst-report.json`（判定报告）。
+- **ABST 落地物**（首轮在 `e2e/abst/`，二轮起迁至独立顶层 `abst/`——见 §十的部署独立性要求）：`registry.json`（声明注册表）、`glossary.md`（词汇表）、`probes.mjs`（探针）、`verdict.mjs`（判定脚本）、`abst-report.json`（判定报告）。
 - **首轮结果**：48 条声明，按 feature 分 8~9 个域登记；`C(G)` 从 68.4% 跑到 100%；**揪出 6 个生产 bug**。
 
 ## 二、被实践证实为真的（优点）

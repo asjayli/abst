@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ABST engine — Auto Business Statement Testing 的确定性判定机（shell 实现）。
-# 兼容 bash >= 3.2（macOS 自带 bash 3.2 可运行）；依赖：jq、sha256sum、stat、date。
+# 兼容 bash >= 3.2（macOS 自带 bash 3.2.57 可运行）；依赖：jq、sha256sum、stat、date（GNU/BSD 双兼容）。
 # 设计文档：docs/abst-design.md
 #
 # 命令：init / endorse / accept / check / verify / report / gate / doctor
@@ -8,6 +8,9 @@
 # 原则（设计文档 §二）：注册表、状态机迁移、Gate 是确定性工具，每次必跑；
 # AI 执行派生与取证，但判定权在本引擎——自报不等于事实。
 set -euo pipefail
+set -f # 禁用 glob：impl-refs 等路径按字面处理
+
+VERSION="0.1.1"
 
 # ---------- 参数 ----------
 CMD="${1:-}"; shift || true
@@ -39,10 +42,10 @@ mtime() {
   [[ -f "$1" ]] || { echo 0; return; }
   stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null || echo 0
 }
-date_epoch() { # ISO 8601 → epoch（if 语句形式：&& 链在 BSD date 下会触发 set -e）
+date_epoch() { # ISO 8601 → epoch（统一按 UTC 解析；if 语句形式：&& 链失败会触发 set -e）
   local out
-  if out="$(date -d "$1" +%s 2>/dev/null)" && [[ -n "$out" ]]; then echo "$out"; return; fi
-  if out="$(date -j -f "%Y-%m-%dT%H:%M:%S" "${1%%.*}" +%s 2>/dev/null)" && [[ -n "$out" ]]; then echo "$out"; return; fi
+  if out="$(TZ=UTC date -d "$1" +%s 2>/dev/null)" && [[ -n "$out" ]]; then echo "$out"; return; fi
+  if out="$(TZ=UTC date -j -f "%Y-%m-%dT%H:%M:%S" "${1%%.*}" +%s 2>/dev/null)" && [[ -n "$out" ]]; then echo "$out"; return; fi
   echo 0
 }
 endorsement_hash() { # $1=text $2=version
@@ -91,7 +94,8 @@ load_state() { # 解析 registry 到索引数组（先重置，允许同一进�
     S_VERDICT+=("$(jq -r '.verdict // "UNPROVEN"' <<<"$st")")
     S_WAIVER_EXP+=("$(jq -r '.waiver.expires // ""' <<<"$st")")
     S_CREATED+=("$(jq -r '."created-at" // ""' <<<"$st")")
-    S_IMPL+=("$(jq -r '."impl-refs" // [] | join(" ")' <<<"$st")")
+    # impl-refs 规范化：去掉 ./ 前缀（与 gate --files 同口径）
+    S_IMPL+=("$(jq -r '."impl-refs" // [] | map(sub("^\\./"; "")) | join(" ")' <<<"$st")")
     S_REFINES+=("$(jq -r '.refines // [] | join(" ")' <<<"$st")")
     S_EVIDENCE+=("$(jq -c '.evidence // []' <<<"$st")")
   done
@@ -130,23 +134,37 @@ ev() {
   elif [[ -n "${S_WAIVER_EXP[$i]}" ]]; then
     if [[ "${S_WAIVER_EXP[$i]}" < "$(now_iso)" ]]; then v="UNPROVEN"; else v="WAIVED"; fi
   elif [[ "${S_SIGN[$i]}" == "human" ]]; then
-    if [[ -n "${S_ACCHASH[$i]}" && "${S_ACCHASH[$i]}" == "$(endorsement_hash "${S_TEXT[$i]}" "${S_VER[$i]}")" ]]; then v="PROVEN"; else v="UNPROVEN"; fi
+    # 逐次验收（§4.3）：impl-refs 命中失鲜即回待验收；否则凭 acceptance（绑定 text+version）判 PROVEN
+    if is_stale "$i"; then v="UNPROVEN"
+    elif [[ -n "${S_ACCHASH[$i]}" && "${S_ACCHASH[$i]}" == "$(endorsement_hash "${S_TEXT[$i]}" "${S_VER[$i]}")" ]]; then v="PROVEN"
+    else v="UNPROVEN"; fi
   elif is_stale "$i"; then v="STALE"
   else
-    own_ev="$(jq '[.[] | select(.status == "official")] | length' <<<"${S_EVIDENCE[$i]}")"
     kids="$(children_of "$id")"
-    if [[ "$own_ev" == "0" && -n "${kids// /}" ]]; then
-      # goal 合取（§4.4）：无正式证据的声明，判定 = 全部子声明判定的合取
+    own_ev="$(jq '[.[] | select(.status == "official")] | length' <<<"${S_EVIDENCE[$i]}")"
+    if [[ -n "${kids// /}" ]]; then
+      # goal 合取（§4.4）：自身证据判定（如有）与其全部子声明判定的合取
+      # 优先级：VIOLATED > STALE > UNPROVEN > PROVEN
       v="PROVEN"
-      for k in $kids; do
-        kv="$(ev "$k" "${seen# } $id")"
-        case "$kv" in
-          VIOLATED) v="VIOLATED"; break;;
+      if [[ "$own_ev" != "0" ]]; then
+        case "${S_VERDICT[$i]}" in
+          VIOLATED) v="VIOLATED";;
           STALE) v="STALE";;
-          PROVEN|WAIVED) ;;
-          *) [[ "$v" == "PROVEN" ]] && v="UNPROVEN";;
+          PROVEN) ;;
+          *) v="UNPROVEN";;
         esac
-      done
+      fi
+      if [[ "$v" != "VIOLATED" ]]; then
+        for k in $kids; do
+          kv="$(ev "$k" "${seen# } $id")"
+          case "$kv" in
+            VIOLATED) v="VIOLATED"; break;;
+            STALE) [[ "$v" == "PROVEN" || "$v" == "UNPROVEN" ]] && v="STALE";;
+            PROVEN|WAIVED) ;;
+            *) [[ "$v" == "PROVEN" ]] && v="UNPROVEN";;
+          esac
+        done
+      fi
     else
       v="${S_VERDICT[$i]}"
     fi
@@ -161,6 +179,16 @@ reaches_endorsed_mission() { # $1=id $2=环保护链
   [[ "${S_LEVEL[$i]}" == "mission" ]] && is_endorsed "$i" && return 0
   for p in ${S_REFINES[$i]}; do
     if idx_of "$p" >/dev/null 2>&1 && reaches_endorsed_mission "$p" "${seen# } $id"; then return 0; fi
+  done
+  return 1
+}
+
+refines_has_cycle() { # $1=起点 id $2=当前 id $3=已访问链
+  local start="$1" cur="$2" seen=" $3 " i p
+  case "$seen" in *" $cur "*) [[ "$cur" == "$start" ]] && return 0; return 1;; esac
+  i="$(idx_of "$cur")" || return 1
+  for p in ${S_REFINES[$i]}; do
+    if refines_has_cycle "$start" "$p" "$seen $cur"; then return 0; fi
   done
   return 1
 }
@@ -219,10 +247,12 @@ cmd_endorse() {
   fi
   local h tmp
   h="$(endorsement_hash "${S_TEXT[$i]}" "${S_VER[$i]}")"
-  tmp="$(mktemp)"
+  tmp="$(mktemp "$REGISTRY.XXXXXX")"
+  trap 'rm -f "$tmp" 2>/dev/null' EXIT
   jq --arg id "$id" --arg h "$h" --arg by "$BY" --arg at "$(now_iso)" \
     '(.statements[] | select(.id == $id)) |= (. + {endorsement: {hash: $h, by: $by, at: $at}, verdict: "UNPROVEN"})' \
     "$REGISTRY" > "$tmp" && mv "$tmp" "$REGISTRY"
+  trap - EXIT
   echo "✓ $id 已背书（DRAFT → UNPROVEN），背书人：$BY"
   echo "  背书绑定 text+version 的 hash——语义升版即失效，须重新背书（§4.3）。"
 }
@@ -237,15 +267,17 @@ cmd_accept() {
   is_endorsed "$i" || fail "$id 尚未完成入库背书（DRAFT），先执行 abst endorse"
   local h tmp
   h="$(endorsement_hash "${S_TEXT[$i]}" "${S_VER[$i]}")"
-  tmp="$(mktemp)"
+  tmp="$(mktemp "$REGISTRY.XXXXXX")"
+  trap 'rm -f "$tmp" 2>/dev/null' EXIT
   jq --arg id "$id" --arg h "$h" --arg by "$BY" --arg at "$(now_iso)" \
     '(.statements[] | select(.id == $id)) |= (. + {acceptance: {hash: $h, by: $by, at: $at}})' \
     "$REGISTRY" > "$tmp" && mv "$tmp" "$REGISTRY"
+  trap - EXIT
   echo "✓ $id 验收签署完成（PROVEN，与本次交付绑定），签署人：$BY"
 }
 
 check_integrity() { # 输出错误行，返回错误数
-  local errors=0 i id p official dup
+  local errors=0 i id p official dup vv
   for ((i = 0; i < ${#IDS[@]}; i++)); do
     id="${IDS[$i]}"
     if ! is_endorsed "$i"; then
@@ -260,13 +292,42 @@ check_integrity() { # 输出错误行，返回错误数
     if [[ -n "${S_WAIVER_EXP[$i]}" && "${S_WAIVER_EXP[$i]}" < "$(now_iso)" ]]; then
       echo "✗ $id：waiver 已超期（${S_WAIVER_EXP[$i]}），须重新豁免或重新取证"; errors=$((errors+1))
     fi
+    vv="${S_VERDICT[$i]}"
+    case "$vv" in
+      UNPROVEN|PROVEN|VIOLATED|STALE|WAIVED|DELEGATED|DRAFT) ;;
+      *) echo "✗ $id：非法 verdict 值 $vv"; errors=$((errors+1));;
+    esac
     for p in ${S_REFINES[$i]}; do
       if ! idx_of "$p" >/dev/null 2>&1; then echo "✗ $id：refines 指向不存在的声明 $p"; errors=$((errors+1)); fi
     done
+    if refines_has_cycle "$id" "$id" ""; then
+      echo "✗ $id：refines 成环"; errors=$((errors+1))
+    fi
     if is_endorsed "$i" && [[ "${S_LEVEL[$i]}" == "goal" ]] && ! reaches_endorsed_mission "$id" ""; then
       echo "✗ $id：孤儿声明——refines 链未抵达任何已背书 mission"; errors=$((errors+1))
     fi
   done
+  # waiver 三元组完整性
+  local bad_waiver
+  bad_waiver="$(jq -r '.statements[] | select(.waiver != null) | select((.waiver.reason // "") == "" or (.waiver.by // "") == "" or (.waiver.expires // "") == "") | .id' "$REGISTRY")"
+  for p in $bad_waiver; do echo "✗ $p：waiver 三元组不完整（理由/到期时间/签署人）"; errors=$((errors+1)); done
+  # evidence 形态校验：form 枚举 + 各形态必填字段
+  local bad_ev
+  bad_ev="$(jq -r '.statements[] | .id as $id | (.evidence // [])[]
+    | select(.form != "probe" and .form != "static" and .form != "unit" and .form != "e2e")
+    | "\($id)：非法 evidence form \(.form)"' "$REGISTRY")"
+  for p in $bad_ev; do echo "✗ $p"; errors=$((errors+1)); done
+  bad_ev="$(jq -r '.statements[] | .id as $id | (.evidence // [])[]
+    | select((.form == "static" and ((.file // "") == "" or (.anchor // "") == ""))
+        or (.form == "unit" and ((.file // "") == "" or (.marker // "") == ""))
+        or (.form == "e2e" and (.resultsFile // "") == "")
+        or (.form == "probe" and (.id // "") == ""))
+    | "\($id)：evidence \(.id // .form) 必填字段缺失（static=file+anchor / unit=file+marker / e2e=resultsFile / probe=id）"' "$REGISTRY")"
+  for p in $bad_ev; do echo "✗ $p"; errors=$((errors+1)); done
+  # impl-refs 不得含空白（engine 按空白分词）
+  local bad_ref
+  bad_ref="$(jq -r '.statements[] | .id as $id | (."impl-refs" // [])[] | select(test("\\s")) | "\($id)：impl-refs 含空白字符，不被支持"' "$REGISTRY")"
+  for p in $bad_ref; do echo "✗ $p"; errors=$((errors+1)); done
   dup="$(printf '%s\n' ${IDS[@]+"${IDS[@]}"} | sort | uniq -d)"
   for p in $dup; do echo "✗ $p：id 重复"; errors=$((errors+1)); done
   return $errors
@@ -294,7 +355,7 @@ eval_evidence() { # $1=evidence-json $2=freshAfter(epoch) → true/false/null
     static|unit)
       f="$(jq -r '.file' <<<"$ev")"
       if [[ "$form" == "static" ]]; then key="$(jq -r '.anchor' <<<"$ev")"; else key="$(jq -r '.marker' <<<"$ev")"; fi
-      if [[ -f "$ROOT/$f" ]] && grep -qF "$key" "$ROOT/$f"; then echo true; else echo false; fi
+      if [[ -f "$ROOT/$f" ]] && grep -qF -- "$key" "$ROOT/$f"; then echo true; else echo false; fi
       ;;
     e2e)
       rf="$(jq -r '.resultsFile' <<<"$ev")"
@@ -312,16 +373,19 @@ cmd_verify() {
   if [[ -f "$STATE" ]]; then
     fresh_after=$(date_epoch "$(jq -r '.updatedAt // "1970-01-01T00:00:00.000Z"' "$STATE")")
   fi
-  local STALE_SET=" " i id before after evs nev any_false any_null o
+  local STALE_SET=" " ACCEPT_CLEAR="" i id before after evs nev any_false any_null o j
   for ((i = 0; i < ${#IDS[@]}; i++)); do
     id="${IDS[$i]}"
     before="$(ev "$id" "")"
+    # 实现变更命中 DRAFT 声明：状态不变但必须告警——实现先于背书是应然滞后的危险信号（§4.3）
+    if [[ "$before" == "DRAFT" ]] && is_stale "$i"; then
+      echo "▲ $id 实现变更命中 DRAFT 声明——实现先于背书，应然滞后告警（§4.3）"
+    fi
     if [[ "$before" != "DRAFT" && "$before" != "WAIVED" && "${S_SIGN[$i]}" != "human" ]]; then
       evs="$(jq -c '[.[] | select(.status == "official")]' <<<"${S_EVIDENCE[$i]}")"
       nev="$(jq 'length' <<<"$evs")"
       if [[ "$nev" != "0" ]]; then
         any_false=0; any_null=0
-        local j
         for ((j = 0; j < nev; j++)); do
           o="$(eval_evidence "$(jq -c ".[$j]" <<<"$evs")" "$fresh_after")"
           [[ "$o" == "false" ]] && any_false=1
@@ -335,19 +399,20 @@ cmd_verify() {
         S_VERDICT[$i]="STALE" # 无正式证据可复跑，STALE 持久化
       fi
     fi
+    # 逐次验收（§4.3）：human 声明被实现变更命中 → 验收签署失效，需重新签署
+    if [[ "${S_SIGN[$i]}" == "human" && "$before" != "DRAFT" && "$before" != "WAIVED" ]] && is_stale "$i"; then
+      if [[ -n "${S_ACCHASH[$i]}" ]]; then
+        ACCEPT_CLEAR="$ACCEPT_CLEAR $id"
+        echo "◌ $id 实现变更命中 → 验收签署失效，需重新验收签署（§4.3 逐次验收）"
+      fi
+    fi
     after="$(ev "$id" "")"
     [[ "${S_VERDICT[$i]}" == "STALE" ]] && STALE_SET="$STALE_SET$id "
     [[ "$after" == "STALE" && "${S_VERDICT[$i]}" == "STALE" ]] && echo "◌ $id 实现变更（impl-refs 命中）→ STALE，需重新取证"
     [[ "$before" != "DRAFT" && "$after" == "DRAFT" ]] && echo "◌ $id 声明语义升版 → DRAFT，需重新背书"
   done
-  # 写回 verdicts
-  local tmp; tmp="$(mktemp)"; cp "$REGISTRY" "$tmp"
-  for ((i = 0; i < ${#IDS[@]}; i++)); do
-    jq --arg id "${IDS[$i]}" --arg v "${S_VERDICT[$i]}" \
-      '(.statements[] | select(.id == $id)).verdict = $v' "$tmp" > "$tmp.2" && mv "$tmp.2" "$tmp"
-  done
-  mv "$tmp" "$REGISTRY"
-  # 更新新鲜度基线：STALE 声明的 impl-refs 不更新——失鲜保持可见，直至证据真正复跑
+  # 更新新鲜度基线：STALE 声明的 impl-refs 不更新——失鲜保持可见，直至证据真正复跑。
+  # 必须先推进基线再写回 verdict，否则已复证的声明会以旧基线重算为 STALE 并存盘（永久锁死）
   local hashes="{}"
   [[ -f "$STATE" ]] && hashes="$(jq -c '.implHashes // {}' "$STATE")"
   for ((i = 0; i < ${#IDS[@]}; i++)); do
@@ -357,7 +422,26 @@ cmd_verify() {
       hashes="$(jq -c --arg f "$f" --arg h "$(file_hash "$f")" '. + {($f): $h}' <<<"$hashes")"
     done
   done
-  jq -n --argjson h "$hashes" --arg at "$(now_iso)" '{implHashes: $h, updatedAt: $at}' > "$STATE"
+  local stmp; stmp="$(mktemp "$STATE.XXXXXX")"
+  trap 'rm -f "$stmp" 2>/dev/null' EXIT
+  jq -n --argjson h "$hashes" --arg at "$(now_iso)" '{implHashes: $h, updatedAt: $at}' > "$stmp" && mv "$stmp" "$STATE"
+  trap - EXIT
+  # 最终判定统一以 ev() 重算值写回（合取节点不残留过期存储值）
+  for ((i = 0; i < ${#IDS[@]}; i++)); do
+    S_VERDICT[$i]="$(ev "${IDS[$i]}" "")"
+  done
+  # 写回 verdicts（并清除失效的验收签署）；tmp 与 registry 同目录保证 mv 原子
+  local tmp; tmp="$(mktemp "$REGISTRY.XXXXXX")"; cp "$REGISTRY" "$tmp"
+  trap 'rm -f "$tmp" "$tmp.2" 2>/dev/null' EXIT
+  for ((i = 0; i < ${#IDS[@]}; i++)); do
+    jq --arg id "${IDS[$i]}" --arg v "${S_VERDICT[$i]}" \
+      '(.statements[] | select(.id == $id)).verdict = $v' "$tmp" > "$tmp.2" && mv "$tmp.2" "$tmp"
+  done
+  for id in $ACCEPT_CLEAR; do
+    jq --arg id "$id" '(.statements[] | select(.id == $id)) |= del(.acceptance)' "$tmp" > "$tmp.2" && mv "$tmp.2" "$tmp"
+  done
+  mv "$tmp" "$REGISTRY"
+  trap - EXIT
   write_report
   echo "✓ 判定刷新完成（${#IDS[@]} 条声明），报告已写入 $REPORT"
   cmd_report
@@ -467,8 +551,11 @@ write_report() {
     [[ -z "$line" ]] && continue
     metrics_json="$(jq -c --arg k "${line%%=*}" --arg v "${line#*=}" '. + {($k): $v}' <<<"$metrics_json")"
   done <<<"$m"
+  local rtmp; rtmp="$(mktemp "$REPORT.XXXXXX")"
+  trap 'rm -f "$rtmp" 2>/dev/null' EXIT
   jq -n --arg at "$(now_iso)" --argjson m "$metrics_json" --argjson s "$stmts" \
-    '{generatedAt: $at, metrics: $m, statements: $s}' > "$REPORT"
+    '{generatedAt: $at, metrics: $m, statements: $s}' > "$rtmp" && mv "$rtmp" "$REPORT"
+  trap - EXIT
 }
 
 cmd_report() {
@@ -482,6 +569,8 @@ cmd_report() {
 cmd_gate() {
   load_state
   [[ $ALL == 1 || -n "$FILES" ]] || fail "缺少 --files a,b,c 或 --all"
+  # --files 规范化：去 ./ 前缀（与 load_state 对 impl-refs 的规范化同口径）
+  FILES="$(printf '%s' "$FILES" | sed 's/\(^\|,\)\.\//\1/g')"
   # S(Δ)：impl-refs 命中的声明 + refines 双向闭包（§六）
   local IN_S=" " i id f p changed
   for ((i = 0; i < ${#IDS[@]}; i++)); do
@@ -490,12 +579,17 @@ cmd_gate() {
       case ",$FILES," in *",$f,"*) IN_S="$IN_S${IDS[$i]} "; break;; esac
     done
   done
+  # 白名单制：--files 未命中任何声明 → S(Δ) 无法界定 → 默认拒绝（§六）
+  if [[ $ALL != 1 && "$IN_S" == " " ]]; then
+    echo "✗ 转人工：--files 未命中任何声明的 impl-refs，S(Δ) 为空——无法界定即默认拒绝（§六白名单制）"
+    return 1
+  fi
   # 闭包扩展（向上 refines + 向下 children）
   changed=1
   while [[ $changed == 1 ]]; do
     changed=0
     for id in $IN_S; do
-      i="$(idx_of "$id")"
+      i="$(idx_of "$id")" || fail "声明 $id 不在注册表中（注册表损坏？先运行 abst check）"
       for p in ${S_REFINES[$i]} $(children_of "$id"); do
         case "$IN_S" in *" $p "*) ;; *) IN_S="$IN_S$p "; changed=1;; esac
       done
@@ -504,12 +598,13 @@ cmd_gate() {
   local reasons="" n=0 v
   for id in $IN_S; do
     n=$((n+1))
-    i="$(idx_of "$id")"
+    i="$(idx_of "$id")" || fail "声明 $id 不在注册表中（注册表损坏？先运行 abst check）"
     v="$(ev "$id" "")"
     case "$v" in
       DRAFT) reasons="$reasons$id：DRAFT（未背书应然不支持放行）\n";;
       STALE) reasons="$reasons$id：STALE（证据失鲜，需重新取证）\n";;
       VIOLATED) reasons="$reasons$id：VIOLATED（三叉定位：实现错/声明错/证据错，§九）\n";;
+      DELEGATED) reasons="$reasons$id：DELEGATED（委托未经回读确认——先运行 abst verify）\n";;
       UNPROVEN)
         if [[ "${S_SIGN[$i]}" == "human" ]]; then reasons="$reasons$id：UNPROVEN（待本次验收签署）\n"
         else reasons="$reasons$id：UNPROVEN（无有效证据）\n"; fi;;
@@ -517,6 +612,7 @@ cmd_gate() {
         if [[ "${S_LEVEL[$i]}" == "goal" ]] && ! reaches_endorsed_mission "$id" ""; then
           reasons="$reasons$id：孤儿声明\n"
         fi;;
+      *) reasons="$reasons$id：未知判定 $v（fail-closed 转人工）\n";;
     esac
   done
   local nreasons; nreasons="$(printf '%b' "$reasons" | grep -c . || true)"
@@ -545,8 +641,8 @@ cmd_doctor() {
 }
 
 usage() {
-  cat <<'EOF'
-ABST engine — 用法：
+  cat <<EOF
+ABST engine $VERSION — 用法：
   abst init [dir]            初始化 ABST 资产（独立顶层目录）
   abst endorse <id> --by 人  入库背书（DRAFT → UNPROVEN 的唯一通道）
   abst accept <id> --by 人   signatory=human 声明的验收签署
@@ -569,6 +665,7 @@ case "$CMD" in
   report) cmd_report;;
   gate) cmd_gate;;
   doctor) cmd_doctor;;
+  --version|version) echo "abst $VERSION";;
   help|--help|"") usage;;
   *) usage; exit 2;;
 esac

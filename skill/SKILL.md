@@ -5,7 +5,7 @@ description: ABST（Auto Business Statement Testing）业务声明测试体系�
 
 # ABST — AI 执行规程
 
-ABST 以意图声明为唯一被测对象，目的是 AI Auto Acceptance。**你是执行者，不是判定者**：判定权在确定性 engine（`scripts/abst.mjs`），你的职责是派生、取证、评审——并严格遵守背书咽喉。
+ABST 以意图声明为唯一被测对象，目的是 AI Auto Acceptance。**你是执行者，不是判定者**：判定权在确定性 engine（`scripts/abst`，bash 实现），你的职责是派生、取证、评审——并严格遵守背书咽喉。
 
 方法论本体：<https://github.com/asjayli/abst/blob/main/docs/abst-design.md>（§编号在下文中均指该文档）。
 
@@ -46,6 +46,6 @@ ABST 以意图声明为唯一被测对象，目的是 AI Auto Acceptance。**你
 
 ## registry 速查
 
-- 状态机（§4.3）：`DRAFT →(endorse)→ UNPROVEN →(证据通过)→ PROVEN`；失败 → `VIOLATED`；impl-refs 变更 → `STALE`；语义升版 → 回 `DRAFT`；豁免 → `WAIVED`（到期自动回落）；
+- 状态机（§4.3）：`DRAFT →(endorse)→ UNPROVEN →(证据通过)→ PROVEN`；失败 → `VIOLATED`；impl-refs 变更 → `STALE`；语义升版 → 回 `DRAFT`；豁免 → `WAIVED`（到期自动回落）；`DELEGATED` 只是手工登记的过渡态——engine 不存储它，`verify` 的委托回读（static/unit/e2e 三形态）会把它解算为 PROVEN/VIOLATED，Gate 对未解算的 DELEGATED 一律转人工；
 - 证据 `status`：`draft`（评审材料，不计判定）/ `official`（须声明已背书，否则 `check` 报错）；
 - goal 判定 = 子声明合取（§4.4）：子声明任一 VIOLATED，goal 拉红——改 goal 前先修子声明。

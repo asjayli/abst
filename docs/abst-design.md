@@ -317,7 +317,7 @@ ABST 不吞并 UT/IT/E2E，两者正交：技术层管 verification，ABST 管 v
 4. **门禁观察模式**：Gate 先只记录不拦截，校准 S(Δ) 界定与豁免登记纪律，指标稳定后转硬门；
 5. **渗透升级**：按 §八逐环节提升自动化渗透率；指标上进看板，拦截率异常即回调。
 
-HEHE 平台机制映射：`SP_SDD`（规格驱动链，当前属半自动层、终态人工签署）对应①派生的现状起点，ABST 的签署客观化是其升级路径；双链测试链 T→T'→OT 对应③的异构评审；`effectVerifyConf`/`goalAcceptConf` 对应④回读与⑥签署的执行底座（详见 HEHE 知识库的 dogfood 运行手册、HEHE 流程调研报告与 TDD Agent Flow 文档）。
+HEHE 平台机制映射（内部参考，面向 HEHE 知识库读者）：`SP_SDD`（规格驱动链，当前属半自动层、终态人工签署）对应①派生的现状起点，ABST 的签署客观化是其升级路径；双链测试链 T→T'→OT 对应③的异构评审；`effectVerifyConf`/`goalAcceptConf` 对应④回读与⑥签署的执行底座（详见 HEHE 知识库的 dogfood 运行手册、HEHE 流程调研报告与 TDD Agent Flow 文档）。
 
 ## 相关
 - [ABST 实践检验报告：bko 试点](abst-field-report-bko.md)
