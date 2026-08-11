@@ -9,7 +9,7 @@ tags: [abst, testing]
 ---
 # ABST 实践检验报告：bko 试点（2026-08）
 
-> 本文是 [ABST 体系设计](/architecture/test/abst-design.md)（Auto Business Statement Testing）的实践复盘，属经验性记录；方法论本体以设计文档为准。
+> 本文是 [ABST 体系设计](abst-design.md)（Auto Business Statement Testing）的实践复盘，属经验性记录；方法论本体以设计文档为准。
 
 ## 一、背景与总量
 
@@ -81,6 +81,4 @@ tags: [abst, testing]
 ABST 的元模型（声明-证据-判定 + 单一覆盖率）经受住了两轮实践检验，取证的 bug 产出远超预期；两轮各暴露一个体系级问题——首轮是**声明的独立性**（派生必须锚定规格源，否则覆盖率越高自洽幻觉越强），二轮是**背书的时序**（签署必须是前置咽喉而非滞后待办，否则高覆盖率给未批准的应然镀金）。两者共同指向同一条底线：应然的合法化永远先于、且永远高于实然的度量。
 
 ## 相关
-- [[abst-design|ABST自动化业务声明测试体系设计]]
-- [[tdd-overview|TDD测试驱动开发概览]]
-- [[atdd-overview|ATDD验收测试驱动开发概览]]
+- [ABST 自动化业务声明测试体系设计](abst-design.md)
