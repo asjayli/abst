@@ -44,6 +44,18 @@ ABST 以意图声明为唯一被测对象，目的是 AI Auto Acceptance。**你
 
 **交付**：`gate --files <变更文件>`，通过才可合并；未过按输出清单消账。
 
+## 工具倾向（降 token、防幻觉）
+
+确定性的读取与分析**优先**走工具，你只做语义判断（设计文档 §十四）：
+
+- 派生：有 openspec 就读规格 diff；没有则读需求文档/代码，但结论标注 `derived-from` 与出处；
+- 影响面与 `impl-refs` 候选：有 codegraph/LSP 就用工具生成；没有则翻代码定位，逐条给出文件+行号；
+- 证据锚点定位：优先 ast-grep/semgrep；
+- 评审：有 open-code-review 类工具先跑工具，异构模型复核语义，分歧交人；
+- 静态扫描（semgrep/CodeQL）的产出可直接登记为 contract 级证据；没有就不登记此类证据，不留空口断言。
+
+**这是倾向不是前提**：本地没有对应工具时对应环节退化为手动执行，体系照常成立——但一切进入注册表与证据链的事实性内容都必须带可复核出处（文件 + 行号），你的无出处转述不算事实来源。
+
 ## registry 速查
 
 - 状态机（§4.3）：`DRAFT →(endorse)→ UNPROVEN →(证据通过)→ PROVEN`；失败 → `VIOLATED`；impl-refs 变更 → `STALE`；语义升版 → 回 `DRAFT`；豁免 → `WAIVED`（到期自动回落）；`DELEGATED` 只是手工登记的过渡态——engine 不存储它，`verify` 的委托回读（static/unit/e2e 三形态）会把它解算为 PROVEN/VIOLATED，Gate 对未解算的 DELEGATED 一律转人工；
