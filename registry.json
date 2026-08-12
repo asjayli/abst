@@ -1,0 +1,1469 @@
+{
+  "version": 1,
+  "domains": [
+    "COMM",
+    "WORK",
+    "FLOW",
+    "AGENT",
+    "GOV",
+    "MEM",
+    "HUDDLE"
+  ],
+  "statements": [
+    {
+      "id": "HEHE-MISSION",
+      "level": "mission",
+      "text": "企业级人机平权协作平台：任务面+沟通面双舞台、应用层+原语层双层平权；应用层可区分以支撑企业级可治理/可计费/可合规/可追责",
+      "version": 2,
+      "signatory": "human",
+      "executable": false,
+      "verdict": "UNPROVEN",
+      "refines": [],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "非企业级治理需求（纯消费级社交）不在边界内",
+      "elasticity": "双舞台落成的阶段次序可协商",
+      "derived-from": "spec 进化方案卷首",
+      "feature": "mission",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "3194529ca9b43642d998837db2c3f87b26b782edc53a66d019a9d25f84819062",
+        "by": "asjayli",
+        "at": "2026-08-12T06:05:02.000Z"
+      }
+    },
+    {
+      "id": "G1",
+      "level": "goal",
+      "text": "沟通面补全：频道/消息/线程/@，绑工作项（P1 → 01 册）；P1 实时性以前端轮询兜底，浏览器推送通道后置",
+      "version": 2,
+      "signatory": "human",
+      "executable": false,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "HEHE-MISSION"
+      ],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "原语层签名验签、审计链、对称治理、语音互通等后续阶段事项不在本 goal 范围",
+      "elasticity": "无",
+      "derived-from": "spec 进化方案§七",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "90a9afb65ff332c53d30ac4fa8dd21dbbc3231ab24b8c9e1132116a50c7a92e3",
+        "by": "asjayli",
+        "at": "2026-08-12T06:05:07.000Z"
+      }
+    },
+    {
+      "id": "G2",
+      "level": "goal",
+      "text": "原语层平权：HEHEEvent + EventVerifier 无分支 + 统一身份根（P2 → 02 册）；私钥服务端托管起步，客户端自持（导出+本地签名）为 P2 必选交付",
+      "version": 2,
+      "signatory": "human",
+      "executable": false,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "HEHE-MISSION"
+      ],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "hash-chain 审计、owner attestation、限流治理、huddle 不在本 goal 范围",
+      "elasticity": "无",
+      "derived-from": "spec 进化方案§七",
+      "feature": "P2",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "439d59ffa66dd4d588d18159b13b9523d25b258d61313688ee86d695e1ff1a01",
+        "by": "asjayli",
+        "at": "2026-08-12T06:05:12.000Z"
+      }
+    },
+    {
+      "id": "G3",
+      "level": "goal",
+      "text": "审计与责任链：hash-chain（自切换点起链，存量只读归档经 genesis 快照锚定）+ owner attestation；审计与可观测性共用基础设施与数据（P3 → 03 册）",
+      "version": 2,
+      "signatory": "human",
+      "executable": false,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "HEHE-MISSION"
+      ],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "RateLimiter 同桶、审核/封禁/归档对称、alys 记忆、语音互通不在本 goal 范围",
+      "elasticity": "无",
+      "derived-from": "spec 进化方案§七",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "be761fcc92fa45f0ee32de9de0b8b657bdf5851eb50692b4b0ab0a312657833f",
+        "by": "asjayli",
+        "at": "2026-08-12T06:05:17.000Z"
+      }
+    },
+    {
+      "id": "G4",
+      "level": "goal",
+      "text": "对称治理与记忆：限流同桶/审核/归档 + alys 记忆；alys 承载记忆成立，集成交互方式（MCP/CLI）以技术验证先行裁定（P4 → 04 册）",
+      "version": 2,
+      "signatory": "human",
+      "executable": false,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "HEHE-MISSION"
+      ],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "alys 内部进化引擎调优、NIP-AE 与 Buzz relay 互操作、语音 huddle 不在本 goal 范围",
+      "elasticity": "无",
+      "derived-from": "spec 进化方案§七",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "d9f597e2482e9c9ee7c0b51576427314a2a932f626875f02df1d1032daf130f3",
+        "by": "asjayli",
+        "at": "2026-08-12T06:18:31.000Z"
+      }
+    },
+    {
+      "id": "G5",
+      "level": "goal",
+      "text": "语音与互通（可选，优先级降至最低，按需启动）：huddle 探索 + Ed25519→Schnorr 适配（P5 → 05 册）",
+      "version": 2,
+      "signatory": "human",
+      "executable": false,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "HEHE-MISSION"
+      ],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "视频/屏幕共享、STT-TTS 产品化、修改 haha 图引擎与内部 Ed25519 曲线不在本 goal 范围",
+      "elasticity": "无",
+      "derived-from": "spec 进化方案§七",
+      "feature": "P5",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "f3c183ff27188a128f4830f461a4d262bfeed444c2b6592e065b91dc9042e4a6",
+        "by": "asjayli",
+        "at": "2026-08-12T06:18:36.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-001",
+      "level": "behavior",
+      "text": "创建工作项频道 当且仅当存在工作项锚点；工作项频道的交互入口决定锚点",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/binder/WorkItemChannelBinder.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/WorkEmployeePermissionService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/binder/WorkItemChannelBinderTest.java",
+          "marker": "anchor_required",
+          "status": "draft"
+        }
+      ],
+      "boundary": "绕过 WorkItemChannelBinder 直接插库不算数",
+      "elasticity": "惰性建 or 工作项创建时同步建可协商",
+      "derived-from": "spec §七 P1",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "e4c441ace1babe11f553a185afeaa4e1c2c18406ad16483fb59f38bfab662ac7",
+        "by": "asjayli",
+        "at": "2026-08-12T06:18:40.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-002",
+      "level": "behavior",
+      "text": "持久化频道消息：人与数字员工的消息同结构留存、作者可追溯",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/resources/sql/talk_ddl.sql",
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/message/MessageService.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/talk-central/src/main/resources/sql/talk_ddl.sql",
+          "anchor": "sig",
+          "status": "draft"
+        }
+      ],
+      "boundary": "P1 不要求 sig 非空（见 P1-009）",
+      "elasticity": "payload 内部 JSON 结构可协商",
+      "derived-from": "spec §四 COMM 设计要点",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "b75bab03f6af220150c1aec8c3b5f7dcaa003739f49d4453857fbf011abda291",
+        "by": "asjayli",
+        "at": "2026-08-12T06:34:43.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-003",
+      "level": "behavior",
+      "text": "频道支持成员异步讨论，讨论上下文完整留存可查",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/thread/ThreadService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/thread/ThreadServiceTest.java",
+          "marker": "thread_root_id",
+          "status": "draft"
+        }
+      ],
+      "boundary": "跨频道线程聚合不算数",
+      "elasticity": "分页深度可协商",
+      "derived-from": "spec §七 P1",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "6e2384b6d5c890560d533623d88e392b6a50d0aa38c595db86bd46dedc84cdda",
+        "by": "asjayli",
+        "at": "2026-08-12T06:38:18.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-004",
+      "level": "behavior",
+      "text": "触发 Agent 执行 当频道消息 @ AI",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/mention/AgentMentionHandler.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/route/SmartRouteService.java",
+        "haha/core/src/main/java/com/afasts/haha/common/agent/executor/AgentExecutorFactory.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "L1 路由 miss 时不触发（SmartRouteService match 不产生 launch_log 语义保留）",
+      "elasticity": "mention 语法（@名字 vs @pubkey）可协商",
+      "derived-from": "spec §七 P1 验收",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "a7a2f812c8f6fd3645759ed4eb8c8ff8ba8340311792710e118f37f958549d73",
+        "by": "asjayli",
+        "at": "2026-08-12T06:21:43.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-005",
+      "level": "behavior",
+      "text": "写回 Agent 回复 到原消息线程",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/mention/AgentMentionHandler.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "执行失败时的错误提示消息不算正式回复",
+      "elasticity": "回复时限可协商",
+      "derived-from": "spec §七 P1 验收",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "26c6e1157f5ab75793f957d9af4252efb8087808c9223a8d3bddc999c9e30f90",
+        "by": "asjayli",
+        "at": "2026-08-12T06:21:47.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-006",
+      "level": "behavior",
+      "text": "频道成员的操作权限按其频道角色校验，人与数字员工同一套角色机制",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelService.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/WorkEmployeePermissionService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/channel/ChannelServicePermissionTest.java",
+          "marker": "agent_role_explicit_grant",
+          "status": "draft"
+        }
+      ],
+      "boundary": "项目级权限（非频道级）不在本条",
+      "elasticity": "owner/admin 细分可后置",
+      "derived-from": "spec §二 角色对齐行",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "4f3697785057786b946972c50c293157fb213a91a3e91c62563bb3222265782f",
+        "by": "asjayli",
+        "at": "2026-08-12T06:34:47.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-007",
+      "level": "behavior",
+      "text": "频道消息即时送达在线成员",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/dispatch/ChannelMsgDispatcher.java",
+        "heihei/heihei/src/main/java/com/afasts/heihei/start/handler/msg/controller/MsgHandlerController.java",
+        "heihei/heihei/src/main/java/com/afasts/heihei/start/handler/msg/controller/MsgPusher.java",
+        "haha/core/src/main/java/com/afasts/haha/common/api/ApiHandler.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/dispatch/ChannelMsgDispatcherTest.java",
+          "marker": "handler_type_registered",
+          "status": "draft"
+        }
+      ],
+      "boundary": "浏览器实时推送通道（WebSocket/轮询）不在本条",
+      "elasticity": "优先级档位（MIDDLE/HIGH）可协商",
+      "derived-from": "spec §五 talk-central 行",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "3ce7af13c66232e6808bb388569f977daf35f7030b2e95c24f08a99bf1441e6d",
+        "by": "asjayli",
+        "at": "2026-08-12T06:38:23.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-008",
+      "level": "behavior",
+      "text": "沟通面事件类型统一登记管理，不重复不冲突",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/event/EnumCommEventType.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/event/EnumCommEventTypeTest.java",
+          "marker": "no_duplicate_type_values",
+          "status": "draft"
+        }
+      ],
+      "boundary": "号段注册迁移到 event-core/EventTypeRegistry 属 P2 范围",
+      "elasticity": "段内编号分配可协商",
+      "derived-from": "spec §四 + 总册 §三",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "4fddd9a919edf4efc212b7e1da74573602c8417a33741114158914176ac6c9cf",
+        "by": "asjayli",
+        "at": "2026-08-12T06:38:27.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-009",
+      "level": "behavior",
+      "text": "P1 阶段频道消息不带签名也可正常收发，不因未验签被阻断",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/resources/sql/talk_ddl.sql",
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/message/MessageService.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/talk-central/src/main/resources/sql/talk_ddl.sql",
+          "anchor": "sig",
+          "status": "draft"
+        }
+      ],
+      "boundary": "P2 启用签名后本条自动失效（由 02 册新声明替代）",
+      "elasticity": "无",
+      "derived-from": "spec §四 COMM 设计要点",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "297496ff27cfdb7c6e3edd7a2f01c96d566e48e6e1d5fdcc4870d70d41e3e175",
+        "by": "asjayli",
+        "at": "2026-08-12T06:38:32.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-010",
+      "level": "behavior",
+      "text": "成员在工作项页面可直接查看并参与其频道",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi-ui/src/pages/Channel/index.tsx",
+        "xixi-ui/src/Layouts/ProjectLayout.tsx"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "视觉细节/交互稿不在本条",
+      "elasticity": "侧栏形态（抽屉/页签）可协商",
+      "derived-from": "spec §五 xixi-ui 行",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "5390705dd666fb245c132b886fef324be87687ac3ff463de2710ee89d42a2119",
+        "by": "asjayli",
+        "at": "2026-08-12T06:49:36.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P1-011",
+      "level": "behavior",
+      "text": "拒绝创建 无工作项锚点的频道",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G1"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/resources/sql/talk_ddl.sql",
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/channel/ChannelServiceTest.java",
+          "marker": "reject_orphan_channel",
+          "status": "draft"
+        }
+      ],
+      "boundary": "P1 不存在的 DM/论坛等独立频道形态一律拒绝，不单独列声明",
+      "elasticity": "无",
+      "derived-from": "spec §六 不吞噬清单",
+      "feature": "P1",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "add93134faef0b693f879c6b35f18a021037b7e7ce618dc2eee82fb3b51a99e3",
+        "by": "asjayli",
+        "at": "2026-08-12T06:49:39.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P2-001",
+      "level": "behavior",
+      "text": "成员的行为以统一事件记录，事件可标识作者、类型、内容并携带签名",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G2"
+      ],
+      "impl-refs": [
+        "xixi/common/src/main/java/com/afasts/xixi/common/event/HEHEEvent.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/common/src/main/java/com/afasts/xixi/common/event/HEHEEvent.java",
+          "anchor": "record",
+          "status": "draft"
+        }
+      ],
+      "boundary": "字段子集、可变类、额外身份字段均不算满足",
+      "elasticity": "字段顺序与序列化格式可协商",
+      "derived-from": "spec §五 event-core 行",
+      "feature": "P2",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "a5d4733078255bec8cab5c942bf24994acc481e24b5be398fcbf33c14677c088",
+        "by": "asjayli",
+        "at": "2026-08-12T06:49:42.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P2-002",
+      "level": "behavior",
+      "text": "验签对所有成员执行同一条路径，不因作者是人或数字员工而分支",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G2"
+      ],
+      "impl-refs": [
+        "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java",
+          "anchor": "verify",
+          "status": "draft"
+        },
+        {
+          "form": "unit",
+          "file": "xixi/common/src/test/java/com/afasts/xixi/common/event/EventVerifierTest.java",
+          "marker": "same_path_human_ai",
+          "status": "draft"
+        }
+      ],
+      "boundary": "任何按作者类型（人/AI/user_type）分支的 verify 均判 VIOLATED",
+      "elasticity": "缓存与否可协商",
+      "derived-from": "spec §五 + §七 P2 验收",
+      "feature": "P2",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "e898d482164f5aa3a351658b2df37962f595998829df30b242f7f8765602fa78",
+        "by": "asjayli",
+        "at": "2026-08-12T06:49:45.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P2-006",
+      "level": "behavior",
+      "text": "成员与数字员工在创建时经同一路径获得签名身份，身份根唯一、不各建一套",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G2"
+      ],
+      "impl-refs": [
+        "xixi/base-central/src/main/java/com/afasts/xixi/security/SmsAuthenticationProvider.java",
+        "xixi/flow-central/src/main/java/com/afasts/xixi/service/impl/UserServiceImpl.java",
+        "xixi/base-central/src/main/java/com/afasts/xixi/security/UserKeyService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/base-central/src/test/java/com/afasts/xixi/security/UserKeyServiceTest.java",
+          "marker": "pubkey_present_and_unique",
+          "status": "draft"
+        }
+      ],
+      "boundary": "任一创建路径遗漏不算满足",
+      "elasticity": "签名算法与生成时机可协商",
+      "derived-from": "spec §五 base-central 行",
+      "feature": "P2",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "a4e382a55e1e59703983dbadeafc8eab2bc8d25e22b986cb1b7d0095e907c715",
+        "by": "asjayli",
+        "at": "2026-08-12T07:09:04.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P2-009",
+      "level": "behavior",
+      "text": "托管私钥加密存储，明文私钥不出现在存储与日志",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G2"
+      ],
+      "impl-refs": [
+        "xixi/scripts/sql/2.3.3/mysql/easyflow_user_key.sql",
+        "xixi/base-central/src/main/java/com/afasts/xixi/security/UserKeyService.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/scripts/sql/2.3.3/mysql/easyflow_user_key.sql",
+          "anchor": "enc_private_key",
+          "status": "draft"
+        },
+        {
+          "form": "unit",
+          "file": "xixi/base-central/src/test/java/com/afasts/xixi/security/UserKeyServiceTest.java",
+          "marker": "no_plaintext_private_key",
+          "status": "draft"
+        }
+      ],
+      "boundary": "明文落库/落日志判 VIOLATED",
+      "elasticity": "加密算法与主密钥来源可协商",
+      "derived-from": "spec §五末信任边界 + 总册 §四.3",
+      "feature": "P2",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "7fa609204c3ea4eedbf2d23265222fe9c429768699f888e0061c050cc0ff6bed",
+        "by": "asjayli",
+        "at": "2026-08-12T07:09:06.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P2-010",
+      "level": "behavior",
+      "text": "P2 起新产生的频道消息须验签通过才被接受",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G2"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/message/MessageService.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "P1 存量无签名消息不在边界内",
+      "elasticity": "验签失败处置（拒收/隔离）可协商",
+      "derived-from": "spec §四 COMM 消息与 event 同构 + §七 P2",
+      "feature": "P2",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "a11d12240dbe8ab3df92caa240da326ef74d4d553fa3e0d2eae61512b0bbfc0a",
+        "by": "asjayli",
+        "at": "2026-08-12T07:09:09.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P2-011",
+      "level": "behavior",
+      "text": "事件只可增加，不可改写、不可删除",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G2"
+      ],
+      "impl-refs": [
+        "xixi/common/src/main/java/com/afasts/xixi/common/event/EventLogService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/common/src/test/java/com/afasts/xixi/common/event/EventLogServiceTest.java",
+          "marker": "reject_unsigned",
+          "status": "draft"
+        },
+        {
+          "form": "static",
+          "file": "xixi/common/src/main/java/com/afasts/xixi/common/event/EventLogService.java",
+          "anchor": "append",
+          "status": "draft"
+        }
+      ],
+      "boundary": "存在更新/删除事件的路径判 VIOLATED",
+      "elasticity": "存储归属模块可协商",
+      "derived-from": "spec §七 P2 验收 新事件落 EventLog",
+      "feature": "P2",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "8bf4845403c37710e60cf916773ff8aba2d21ecfe2af0825dbf1765371bc4032",
+        "by": "asjayli",
+        "at": "2026-08-12T07:09:12.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-001",
+      "level": "behavior",
+      "text": "治理关键事件追加进审计链",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/AuditChainService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/audit/AuditChainServiceTest.java",
+          "marker": "append_monotonic",
+          "status": "draft"
+        }
+      ],
+      "boundary": "非治理关键事件不落链不算违背",
+      "elasticity": "落链事件类型清单可协商",
+      "derived-from": "spec §五 AuditChainService 行",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "d8c1d834153e3bfed08f7cdcd17bb073985f0b46aef4021e4584c07667bce804",
+        "by": "asjayli",
+        "at": "2026-08-12T07:10:31.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-003",
+      "level": "behavior",
+      "text": "审计链上任何事后篡改可被检出",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/AuditChainService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/audit/AuditChainServiceTest.java",
+          "marker": "tamper_injection_fails",
+          "status": "draft"
+        }
+      ],
+      "boundary": "平台运营方持钥代签不算篡改（信任边界已明示）",
+      "elasticity": "校验方式可协商",
+      "derived-from": "spec §八测试策略",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "1bb91d2ed732a6f83e3d7e474c95e19ecdc70c75d770dbc79d60c53883a1bf37",
+        "by": "asjayli",
+        "at": "2026-08-12T07:10:34.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-005",
+      "level": "behavior",
+      "text": "工作项变更留痕一次性切换为签名事件，不做双写；存量原样保留为只读归档",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkItemServiceImpl.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkApprovalSyncServiceImpl.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "存量行不重签不改写",
+      "elasticity": "切换窗口与归档快照方式可协商",
+      "derived-from": "spec §五 work-central 行、§七 进化完全",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "14b223ebb43f89cba7e4b254c20fe096a6dc129a2a22470af4ebe860e71ea720",
+        "by": "asjayli",
+        "at": "2026-08-12T07:10:37.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-006",
+      "level": "behavior",
+      "text": "历史变更查询与收件箱等可观测面与新事件流同源，不出现两套事实",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/WorkChangelogObservabilityService.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkInboxServiceImpl.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "展示字段裁剪不算违背，关键字段可比即可",
+      "elasticity": "分页/排序细节可协商",
+      "derived-from": "spec §八测试策略末行",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "0bb34297cc1c84ba45c91c604caf123b2b906d2a8225a9ba559bb6749ff1878d",
+        "by": "asjayli",
+        "at": "2026-08-12T07:13:57.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-007",
+      "level": "behavior",
+      "text": "数字员工上岗时由其 owner 签发委托背书，不允许自签发；其每个事件可追溯到该 owner",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/AgentProfileOperationService.java",
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/AgentOwnerAttestationService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/service/AgentOwnerAttestationServiceTest.java",
+          "marker": "reject_self_issued",
+          "status": "draft"
+        }
+      ],
+      "boundary": "存量的历史行为不追溯",
+      "elasticity": "签发触发点可协商",
+      "derived-from": "spec §五 ai-central 行",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "53a5dbf1069ce47b05b58845e20356ede62c8209a6eb7359681e29cc1f5bd3d7",
+        "by": "asjayli",
+        "at": "2026-08-12T07:14:05.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-008",
+      "level": "behavior",
+      "text": "数字员工的事件在落链前须满足其委托背书的条件",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/AgentOwnerAttestationService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/service/AgentOwnerAttestationServiceTest.java",
+          "marker": "conditions_enforced",
+          "status": "draft"
+        }
+      ],
+      "boundary": "条件语法外的自由表达式不支持不算违背",
+      "elasticity": "条件子句集可扩展",
+      "derived-from": "spec §四 OWNER_ATTEST 注入",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "d2265ff4ecba9f65dbcabda5b833334d323993273e4de491a2b44a6a2447e208",
+        "by": "asjayli",
+        "at": "2026-08-12T07:14:12.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-010",
+      "level": "behavior",
+      "text": "数字员工的流程节点执行产出签名事件",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/DefaultAgentTaskResultHandler.java",
+        "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/AbstractAgentExecution.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "haha/core/src/test/java/com/afasts/haha/common/flow/exec/node/NodeExecEventTest.java",
+          "marker": "node_exec_signed",
+          "status": "draft"
+        }
+      ],
+      "boundary": "人工挂起无执行产出不算违背",
+      "elasticity": "事件内容字段集可协商",
+      "derived-from": "spec §五 haha/core 行",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "885bd98f9a0d4e33097c3ee91d14a25a0fd1d8853cf45faf51e4e29def52ba08",
+        "by": "asjayli",
+        "at": "2026-08-12T07:14:19.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-011",
+      "level": "behavior",
+      "text": "用量指标只作观测，不作为身份或权限判定依据",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/AbstractAgentExecution.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/common/src/test/java/com/afasts/xixi/common/event/EventVerifierTest.java",
+          "marker": "turn_metric_no_identity_branch",
+          "status": "draft"
+        }
+      ],
+      "boundary": "指标是否落链不在本条",
+      "elasticity": "空值处理可协商",
+      "derived-from": "spec §四设计要点 观测非身份",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "50fce6c74627e88addda67626cc346805f2342fa869697389ec0a8aed9e81e0b",
+        "by": "asjayli",
+        "at": "2026-08-12T07:15:58.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-013",
+      "level": "behavior",
+      "text": "审计链可查询、可校验",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/controller/audit/AuditChainController.java",
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/controller/wakeup/WakeUpController.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "鉴权沿用既有体系不新建",
+      "elasticity": "端点形态可协商",
+      "derived-from": "spec §五 deploy 行",
+      "feature": "P3",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "c1e6913ceb907e5b1af1a8278f9d7565d73876103588581389f3f2a1a2d95563",
+        "by": "asjayli",
+        "at": "2026-08-12T07:16:01.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-001",
+      "level": "behavior",
+      "text": "人与数字员工的请求按同一桶限流，超限同样被拒并留痕",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/RateLimitService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/gov/RateLimitServiceTest.java",
+          "marker": "same_bucket_human_ai",
+          "status": "draft"
+        }
+      ],
+      "boundary": "LLM provider 侧配额错误不在本条",
+      "elasticity": "窗口/阈值可配置",
+      "derived-from": "spec §七 P4 行、§五 work-central 行",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "2e149e0cf4877c820bb829e9617579d664af2246c9ebcd56cac074c0976baf5e",
+        "by": "asjayli",
+        "at": "2026-08-12T07:16:04.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-003",
+      "level": "behavior",
+      "text": "任何成员（人或数字员工）可被举报，举报进入审核队列且不在频道公开扩散",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java",
+        "xixi/scripts/sql/2.3.3/mysql/gov_report.sql"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/gov/GovernanceServiceTest.java",
+          "marker": "report_queued",
+          "status": "draft"
+        },
+        {
+          "form": "static",
+          "file": "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java",
+          "anchor": "report",
+          "status": "draft"
+        }
+      ],
+      "boundary": "自动处置不在边界内——举报是信号不是触发器",
+      "elasticity": "原因词表可配置",
+      "derived-from": "spec §四 GOV 段、§二对称约束行",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "36607b27cd60be734e720780330f543e289153d78aa52b4a03f0bc61c8189a86",
+        "by": "asjayli",
+        "at": "2026-08-12T07:16:07.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-004",
+      "level": "behavior",
+      "text": "数字员工被禁言后，在频道内见到与人相同的拦截与提示",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java",
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelMember.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "工作项级权限差异不在本条（只管频道层）",
+      "elasticity": "提示文案与时长策略可协商",
+      "derived-from": "spec §七 P4 行（验收①）、§九治理层",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "f5580b92b3ec314cd0696a188109170ed89c752e5218804648347853672eb00c",
+        "by": "asjayli",
+        "at": "2026-08-12T07:17:43.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-005",
+      "level": "behavior",
+      "text": "归档对人 AI 同一路径；归档是只读留存，不是删除",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/gov/GovernanceServiceTest.java",
+          "marker": "archive_same_path",
+          "status": "draft"
+        }
+      ],
+      "boundary": "物理删除不在边界内",
+      "elasticity": "保留期策略可协商",
+      "derived-from": "spec §二对称约束行",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "23a54ee37c3f74ad4e565a75993f9846528baad490d630e39cdcceec71d8b43e",
+        "by": "asjayli",
+        "at": "2026-08-12T07:17:46.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-007",
+      "level": "behavior",
+      "text": "记忆是数字员工装备的一个维度，可在装备中配置并随装备发布",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "haha/core/src/main/java/com/afasts/haha/common/agent/equipment/EquipmentManifest.java",
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/dal/dao/model/AgentProfileDo.java",
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/EquipmentLoadoutService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/equipment/EquipmentManifestMemoryTest.java",
+          "marker": "memory_policy_roundtrip",
+          "status": "draft"
+        }
+      ],
+      "boundary": "存量无记忆维度的装备不需迁移，按无记忆降级",
+      "elasticity": "记忆配置子项可协商",
+      "derived-from": "spec §五 ai-central 行、§二 Agent 记忆行",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "5c67c6d3d03385f04bf71802d134b9018585d1d6d57385b81bc606105c3c675b",
+        "by": "asjayli",
+        "at": "2026-08-12T07:17:49.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-008",
+      "level": "behavior",
+      "text": "数字员工执行前注入其记忆；记忆不可用时降级执行、不阻断",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/AgentNodeExecution.java",
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/MemoryGateway.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/memory/MemoryGatewayInjectTest.java",
+          "marker": "unreachable_no_block",
+          "status": "draft"
+        }
+      ],
+      "boundary": "注入内容不保证被模型采用",
+      "elasticity": "注入条数与模板可协商",
+      "derived-from": "spec §五 alys 行",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "7f5fcb33e6752669a41f7a3688ab1656d21c46db31ded17508e7d51526cd5db3",
+        "by": "asjayli",
+        "at": "2026-08-12T07:17:52.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-009",
+      "level": "behavior",
+      "text": "数字员工执行后经验写回其记忆区，后续会话可召回",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/DefaultAgentTaskResultHandler.java",
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/MemoryGateway.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "记忆提炼质量不在本条",
+      "elasticity": "写回裁剪策略可协商",
+      "derived-from": "spec §七 P4 行（验收②）、§五 alys 行",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "8abc44c8d20920526397d412a959a63f1b8570712e125e76bc96df489242dfc8",
+        "by": "asjayli",
+        "at": "2026-08-12T07:18:51.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-011",
+      "level": "behavior",
+      "text": "每个数字员工的记忆区相互隔离，只能读写自己的记忆",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "alys/crates/alys-cli/src/main.rs",
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/MemoryGateway.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/memory/MemoryIsolationTest.java",
+          "marker": "cross_agent_denied",
+          "status": "draft"
+        }
+      ],
+      "boundary": "显式启用的共享经验池不算违反",
+      "elasticity": "隔离粒度可协商",
+      "derived-from": "spec §五 alys 行（为每个 AI 员工开记忆区）",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "703e5c59f5ec079cd1e5107a81ac865a10705e3c04c6ec448f2b6c41337554f1",
+        "by": "asjayli",
+        "at": "2026-08-12T07:18:54.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P4-012",
+      "level": "behavior",
+      "text": "owner 可查看其数字员工的记忆内容与读写时间线",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "xixi-ui/src/pages/AgentMemory/index.tsx"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "在线编辑/删除不在本条（只读视图）",
+      "elasticity": "展示形态可协商",
+      "derived-from": "spec §五 xixi-ui 行",
+      "feature": "P4",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "1549acdc3a1777bd437b61763dff0836f4d215456567c8efec982612b074bc83",
+        "by": "asjayli",
+        "at": "2026-08-12T07:18:56.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P5-001",
+      "level": "behavior",
+      "text": "语音讨论锚定在频道（工作项）上，无锚点不开",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleService.java",
+        "xixi/scripts/sql/2.3.3/mysql/huddle_session.sql"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/scripts/sql/2.3.3/mysql/huddle_session.sql",
+          "anchor": "channel_id",
+          "status": "draft"
+        }
+      ],
+      "boundary": "独立语音入口不算数",
+      "elasticity": "锚定展示形式可协商",
+      "derived-from": "spec §7 P5 行 + H2；2026-08-12 背书人撤回：所有语音内容待定",
+      "feature": "P5",
+      "created-at": "2026-08-12T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-006",
+      "level": "behavior",
+      "text": "语音内容不持久化",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/HuddleWebSocketHandler.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/HuddleWebSocketHandler.java",
+          "anchor": "trySend",
+          "status": "draft"
+        }
+      ],
+      "boundary": "转写文本（默认关闭）除外",
+      "elasticity": "无",
+      "derived-from": "spec §6（YAGNI/隐私）",
+      "feature": "P5",
+      "created-at": "2026-08-12T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-011",
+      "level": "behavior",
+      "text": "语音转写默认关闭，启用须参与者明示同意",
+      "version": 2,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleService.java",
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleProperties.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleProperties.java",
+          "anchor": "transcript",
+          "status": "draft"
+        }
+      ],
+      "boundary": "默认开启或无明示记录即违反",
+      "elasticity": "转写引擎选型开放",
+      "derived-from": "spec §2（STT-TTS 后置可选）",
+      "feature": "P5",
+      "created-at": "2026-08-12T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P2-014",
+      "level": "behavior",
+      "version": 2,
+      "verdict": "UNPROVEN",
+      "text": "成员可私钥自持：导出本人私钥、客户端本地签名、可轮换；平台与他人不可代签、不可导出他人私钥",
+      "signatory": "human",
+      "executable": true,
+      "refines": [
+        "G2"
+      ],
+      "impl-refs": [
+        "xixi/base-central/src/main/java/com/afasts/xixi/base/service/KeyExportService.java"
+      ],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/evidence-results.json",
+          "status": "draft"
+        }
+      ],
+      "boundary": "存量托管模式双模并存可接受",
+      "elasticity": "导出格式与客户端形态可协商",
+      "derived-from": "human 背书评审 2026-08-12（G2 v2-A：客户端自持升必选）",
+      "feature": "P2",
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "df51eee48cc02598235ac5fa61cd29938201717befc576332063d5130857615f",
+        "by": "asjayli",
+        "at": "2026-08-12T07:10:28.000Z"
+      }
+    }
+  ]
+}
