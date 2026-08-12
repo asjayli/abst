@@ -159,7 +159,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -172,7 +172,7 @@
           "form": "unit",
           "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/binder/WorkItemChannelBinderTest.java",
           "marker": "anchor_required",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "绕过 WorkItemChannelBinder 直接插库不算数",
@@ -193,7 +193,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -204,9 +204,9 @@
       "evidence": [
         {
           "form": "static",
-          "file": "xixi/talk-central/src/main/resources/sql/talk_ddl.sql",
+          "file": "xixi/scripts/sql/2.3.3/mysql/20260812_talk-channel-ddl.sql",
           "anchor": "sig",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "P1 不要求 sig 非空（见 P1-009）",
@@ -227,7 +227,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -238,8 +238,8 @@
         {
           "form": "unit",
           "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/thread/ThreadServiceTest.java",
-          "marker": "thread_root_id",
-          "status": "draft"
+          "marker": "listThreadReplies_aggregatesByThreadRootId_paged",
+          "status": "official"
         }
       ],
       "boundary": "跨频道线程聚合不算数",
@@ -326,7 +326,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -337,9 +337,9 @@
       "evidence": [
         {
           "form": "unit",
-          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/channel/ChannelServicePermissionTest.java",
-          "marker": "agent_role_explicit_grant",
-          "status": "draft"
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/channel/ChannelServiceTest.java",
+          "marker": "addMember_agentRoleOrType_requiresExplicitGrant",
+          "status": "official"
         }
       ],
       "boundary": "项目级权限（非频道级）不在本条",
@@ -360,7 +360,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -374,8 +374,8 @@
         {
           "form": "unit",
           "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/dispatch/ChannelMsgDispatcherTest.java",
-          "marker": "handler_type_registered",
-          "status": "draft"
+          "marker": "registry_handlerTypeRegistered_startupSelfCheckPasses",
+          "status": "official"
         }
       ],
       "boundary": "浏览器实时推送通道（WebSocket/轮询）不在本条",
@@ -396,7 +396,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -406,9 +406,9 @@
       "evidence": [
         {
           "form": "unit",
-          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/event/EnumCommEventTypeTest.java",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/event/EventTypeRegistryTest.java",
           "marker": "no_duplicate_type_values",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "号段注册迁移到 event-core/EventTypeRegistry 属 P2 范围",
@@ -429,7 +429,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -440,9 +440,9 @@
       "evidence": [
         {
           "form": "static",
-          "file": "xixi/talk-central/src/main/resources/sql/talk_ddl.sql",
+          "file": "xixi/scripts/sql/2.3.3/mysql/20260812_talk-channel-ddl.sql",
           "anchor": "sig",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "P2 启用签名后本条自动失效（由 02 册新声明替代）",
@@ -496,7 +496,7 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -509,7 +509,7 @@
           "form": "unit",
           "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/channel/ChannelServiceTest.java",
           "marker": "reject_orphan_channel",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "P1 不存在的 DM/论坛等独立频道形态一律拒绝，不单独列声明",
