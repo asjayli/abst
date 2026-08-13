@@ -260,7 +260,7 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "STALE",
       "refines": [
         "G1"
       ],
@@ -294,7 +294,7 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "STALE",
       "refines": [
         "G1"
       ],
@@ -530,7 +530,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G2"
       ],
@@ -542,7 +542,7 @@
           "form": "static",
           "file": "xixi/common/src/main/java/com/afasts/xixi/common/event/HEHEEvent.java",
           "anchor": "record",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "字段子集、可变类、额外身份字段均不算满足",
@@ -563,7 +563,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G2"
       ],
@@ -575,13 +575,13 @@
           "form": "static",
           "file": "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java",
           "anchor": "verify",
-          "status": "draft"
+          "status": "official"
         },
         {
           "form": "unit",
           "file": "xixi/common/src/test/java/com/afasts/xixi/common/event/EventVerifierTest.java",
           "marker": "same_path_human_ai",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "任何按作者类型（人/AI/user_type）分支的 verify 均判 VIOLATED",
@@ -602,7 +602,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G2"
       ],
@@ -616,7 +616,7 @@
           "form": "unit",
           "file": "xixi/base-central/src/test/java/com/afasts/xixi/security/UserKeyServiceTest.java",
           "marker": "pubkey_present_and_unique",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "任一创建路径遗漏不算满足",
@@ -642,13 +642,13 @@
         "G2"
       ],
       "impl-refs": [
-        "xixi/scripts/sql/2.3.3/mysql/easyflow_user_key.sql",
+        "xixi/scripts/sql/2.3.3/mysql/20260812_p2-event-core-ddl.sql",
         "xixi/base-central/src/main/java/com/afasts/xixi/security/UserKeyService.java"
       ],
       "evidence": [
         {
           "form": "static",
-          "file": "xixi/scripts/sql/2.3.3/mysql/easyflow_user_key.sql",
+          "file": "xixi/scripts/sql/2.3.3/mysql/20260812_p2-event-core-ddl.sql",
           "anchor": "enc_private_key",
           "status": "draft"
         },
@@ -677,7 +677,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "STALE",
       "refines": [
         "G2"
       ],
@@ -709,7 +709,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G2"
       ],
@@ -721,13 +721,13 @@
           "form": "unit",
           "file": "xixi/common/src/test/java/com/afasts/xixi/common/event/EventLogServiceTest.java",
           "marker": "reject_unsigned",
-          "status": "draft"
+          "status": "official"
         },
         {
           "form": "static",
           "file": "xixi/common/src/main/java/com/afasts/xixi/common/event/EventLogService.java",
           "anchor": "append",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "存在更新/删除事件的路径判 VIOLATED",
