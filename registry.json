@@ -820,7 +820,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
@@ -844,6 +844,11 @@
         "hash": "14b223ebb43f89cba7e4b254c20fe096a6dc129a2a22470af4ebe860e71ea720",
         "by": "asjayli",
         "at": "2026-08-12T07:10:37.000Z"
+      },
+      "acceptance": {
+        "hash": "14b223ebb43f89cba7e4b254c20fe096a6dc129a2a22470af4ebe860e71ea720",
+        "by": "asjayli",
+        "at": "2026-08-17T14:40:47.000Z"
       }
     },
     {
@@ -853,7 +858,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
@@ -883,6 +888,11 @@
         "hash": "0bb34297cc1c84ba45c91c604caf123b2b906d2a8225a9ba559bb6749ff1878d",
         "by": "asjayli",
         "at": "2026-08-12T07:13:57.000Z"
+      },
+      "acceptance": {
+        "hash": "0bb34297cc1c84ba45c91c604caf123b2b906d2a8225a9ba559bb6749ff1878d",
+        "by": "asjayli",
+        "at": "2026-08-17T14:40:49.000Z"
       }
     },
     {
@@ -1045,7 +1055,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
@@ -1069,6 +1079,11 @@
         "hash": "c1e6913ceb907e5b1af1a8278f9d7565d73876103588581389f3f2a1a2d95563",
         "by": "asjayli",
         "at": "2026-08-12T07:16:01.000Z"
+      },
+      "acceptance": {
+        "hash": "c1e6913ceb907e5b1af1a8278f9d7565d73876103588581389f3f2a1a2d95563",
+        "by": "asjayli",
+        "at": "2026-08-17T14:40:52.000Z"
       }
     },
     {
