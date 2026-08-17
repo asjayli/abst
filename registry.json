@@ -1093,7 +1093,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
@@ -1104,8 +1104,8 @@
         {
           "form": "unit",
           "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/gov/RateLimitServiceTest.java",
-          "marker": "same_bucket_human_ai",
-          "status": "draft"
+          "marker": "humanAndAgent_sameKeyFormat_sameThreshold",
+          "status": "official"
         }
       ],
       "boundary": "LLM provider 侧配额错误不在本条",
@@ -1126,26 +1126,19 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
       "impl-refs": [
-        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java",
-        "xixi/scripts/sql/2.3.3/mysql/gov_report.sql"
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java"
       ],
       "evidence": [
         {
           "form": "unit",
           "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/gov/GovernanceServiceTest.java",
-          "marker": "report_queued",
-          "status": "draft"
-        },
-        {
-          "form": "static",
-          "file": "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java",
-          "anchor": "report",
-          "status": "draft"
+          "marker": "report_queuedAndEventEmitted",
+          "status": "official"
         }
       ],
       "boundary": "自动处置不在边界内——举报是信号不是触发器",
@@ -1172,13 +1165,13 @@
       ],
       "impl-refs": [
         "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java",
-        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelMember.java"
+        "xixi-ui/src/pages/Channel/index.tsx"
       ],
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
-          "status": "draft"
+          "resultsFile": "abst/volumes/p4-004-mute-banner.json",
+          "status": "official"
         }
       ],
       "boundary": "工作项级权限差异不在本条（只管频道层）",
@@ -1199,19 +1192,20 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
       "impl-refs": [
-        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java"
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovernanceService.java",
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/gov/TalkArchiveTargetImpl.java"
       ],
       "evidence": [
         {
           "form": "unit",
           "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/gov/GovernanceServiceTest.java",
-          "marker": "archive_same_path",
-          "status": "draft"
+          "marker": "archive_softDeletesAndEmits",
+          "status": "official"
         }
       ],
       "boundary": "物理删除不在边界内",
@@ -1232,21 +1226,21 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "STALE",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
       "impl-refs": [
         "haha/core/src/main/java/com/afasts/haha/common/agent/equipment/EquipmentManifest.java",
-        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/dal/dao/model/AgentProfileDo.java",
-        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/EquipmentLoadoutService.java"
+        "haha/core/src/main/java/com/afasts/haha/common/agent/equipment/MemoryPolicy.java",
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/dal/dao/model/AgentProfileDo.java"
       ],
       "evidence": [
         {
           "form": "unit",
-          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/equipment/EquipmentManifestMemoryTest.java",
-          "marker": "memory_policy_roundtrip",
-          "status": "draft"
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/converter/MemoryPolicyConverterTest.java",
+          "marker": "toDto_blankJson_degradesToNull",
+          "status": "official"
         }
       ],
       "boundary": "存量无记忆维度的装备不需迁移，按无记忆降级",
@@ -1267,20 +1261,21 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
       "impl-refs": [
         "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/AgentNodeExecution.java",
-        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/MemoryGateway.java"
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/MemoryGateway.java",
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java"
       ],
       "evidence": [
         {
           "form": "unit",
-          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/memory/MemoryGatewayInjectTest.java",
-          "marker": "unreachable_no_block",
-          "status": "draft"
+          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/memory/CliMemoryGatewayTest.java",
+          "marker": "unreachable_returnsNullFalseWithoutThrowing",
+          "status": "official"
         }
       ],
       "boundary": "注入内容不保证被模型采用",
@@ -1307,13 +1302,14 @@
       ],
       "impl-refs": [
         "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/DefaultAgentTaskResultHandler.java",
-        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/MemoryGateway.java"
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkAiWriteServiceImpl.java"
       ],
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
-          "status": "draft"
+          "resultsFile": "abst/volumes/p4-009-cross-session-memory.json",
+          "status": "official"
         }
       ],
       "boundary": "记忆提炼质量不在本条",
@@ -1334,20 +1330,19 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
       "impl-refs": [
-        "alys/crates/alys-cli/src/main.rs",
-        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/MemoryGateway.java"
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java"
       ],
       "evidence": [
         {
           "form": "unit",
-          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/memory/MemoryIsolationTest.java",
-          "marker": "cross_agent_denied",
-          "status": "draft"
+          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/memory/CliMemoryGatewayTest.java",
+          "marker": "isolation_agentBcannotSeeAgentA",
+          "status": "official"
         }
       ],
       "boundary": "显式启用的共享经验池不算违反",
@@ -1373,13 +1368,14 @@
         "G4"
       ],
       "impl-refs": [
-        "xixi-ui/src/pages/AgentMemory/index.tsx"
+        "xixi-ui/src/pages/ProjectSpace/components/AgentMemoryPanel.tsx",
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/controller/ai/AgentMemoryController.java"
       ],
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
-          "status": "draft"
+          "resultsFile": "abst/volumes/p4-012-agent-memory-page.json",
+          "status": "official"
         }
       ],
       "boundary": "在线编辑/删除不在本条（只读视图）",

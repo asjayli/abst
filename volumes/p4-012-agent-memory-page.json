@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "at": "2026-08-17T15:50:00Z",
+  "note": "AgentMemory 页 e2e（API 抽查，2026-08-17 23:48-23:50）：AI 管理「记忆」tab（AgentMemoryPanel，customRender 挂 CapabilityShell）消费两端点——POST /xixi/agent/memory/search：reachable=true + entries 按 zone 解析（objective 原始记录/cognitive 认知命题，内容与 score 列可渲染）；POST /xixi/agent/memory/events：6001 行 type/ts/payload(scene,payloadHash) 正确回显。tsc --noEmit 0 error（AgentMemoryPanel/agentMemory/Ai.tsx 无类型错误）。前端浏览器截图从略（playwright MCP 实例易崩溃，按 curl+类型检查兜底惯例，见记忆 hehe-p3-audit-chain）。"
+}

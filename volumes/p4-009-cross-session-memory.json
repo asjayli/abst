@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "at": "2026-08-17T15:50:00Z",
+  "note": "验收② e2e（收口点形态，2026-08-17 23:48）：POST /xixi/work/ai/agentTask/result（X-Auth-Token + session，haha reportToAdmin 同一收口点 P3-S6）带 equipmentLoadout.memory={enabled,scene:agent-tdd,writebackEnabled} + outputData='P4 e2e 验证：完成了记忆闭环端到端测试' → CliMemoryGateway.writeback 真实 alys store（ALYS_DATA_DIR=~/.hehe/agent-memory/tdd-od 物理隔离）→ 6001 MEM_WRITE 落 EventLog（payloadHash=82221273e3…，/xixi/agent/memory/events 可查）；随后 POST /xixi/agent/memory/search 同关键词 → objective+cognitive 双区条目召回（跨会话语义：后续任一会话按输入前缀可召回本次执行摘要）。单元级真实往返：CliMemoryGatewayTest.reachable_writebackThenRecall。"
+}

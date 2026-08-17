@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "at": "2026-08-17T15:50:00Z",
+  "note": "验收① e2e（curl 收口点验证，2026-08-17 23:46-23:48 本地 xixi 3301 + admin 会话）：POST /xixi/gov/moderate ban tdd-od（projectId=PDD）→ actionId=1；POST /xixi/gov/restriction（横幅数据源，写拦截同源判定）查 tdd-od → restricted=true（永久，channelId/expireAt=null）；untimeout→timeout 600s → restricted=true + expireAt=1786982239832；unban → restricted=false。判定无作者分支（human/agent 同一 isRestricted），前端频道页横幅组件消费同一端点（Channel/index.tsx muted 状态 + 禁用输入）。写拦截单元级证据：MessageServiceImplTest.sendMessage_bannedAgent_rejectedSamePath。"
+}
