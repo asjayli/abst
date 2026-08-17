@@ -748,7 +748,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
@@ -760,7 +760,7 @@
           "form": "unit",
           "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/audit/AuditChainServiceTest.java",
           "marker": "append_monotonic",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "非治理关键事件不落链不算违背",
@@ -781,7 +781,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
@@ -793,7 +793,7 @@
           "form": "unit",
           "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/audit/AuditChainServiceTest.java",
           "marker": "tamper_injection_fails",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "平台运营方持钥代签不算篡改（信任边界已明示）",
@@ -825,7 +825,7 @@
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
+          "resultsFile": "abst/volumes/p3-005-changelog-cutover.json",
           "status": "draft"
         }
       ],
@@ -852,19 +852,25 @@
         "G3"
       ],
       "impl-refs": [
-        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/WorkChangelogObservabilityService.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/changelog/EventChangelogReader.java",
         "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkInboxServiceImpl.java"
       ],
       "evidence": [
         {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/service/changelog/EventChangelogReaderTest.java",
+          "marker": "expand",
+          "status": "draft"
+        },
+        {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
+          "resultsFile": "abst/volumes/p3-006-single-source-read.json",
           "status": "draft"
         }
       ],
       "boundary": "展示字段裁剪不算违背，关键字段可比即可",
       "elasticity": "分页/排序细节可协商",
-      "derived-from": "spec §八测试策略末行",
+      "derived-from": "03 册 §八 + 2026-08-14 设计裁定：读折叠 revert，改回填+单源读（EventChangelogReader）",
       "feature": "P3",
       "created-at": "2026-08-12T00:00:00.000Z",
       "endorsement": {
@@ -885,18 +891,17 @@
         "G3"
       ],
       "impl-refs": [
-        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/AgentProfileOperationService.java",
-        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/AgentOwnerAttestationService.java"
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java"
       ],
       "evidence": [
         {
           "form": "unit",
-          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/service/AgentOwnerAttestationServiceTest.java",
-          "marker": "reject_self_issued",
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationServiceTest.java",
+          "marker": "issue_rejects_self_attestation",
           "status": "draft"
         }
       ],
-      "boundary": "存量的历史行为不追溯",
+      "boundary": "存量的历史行为不追溯；上岗流程挂接签发未接线（2026-08-14 裁定：后续工作项），接线前 UNPROVEN",
       "elasticity": "签发触发点可协商",
       "derived-from": "spec §五 ai-central 行",
       "feature": "P3",
@@ -919,17 +924,23 @@
         "G3"
       ],
       "impl-refs": [
-        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/AgentOwnerAttestationService.java"
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java"
       ],
       "evidence": [
         {
           "form": "unit",
-          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/service/AgentOwnerAttestationServiceTest.java",
-          "marker": "conditions_enforced",
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationServiceTest.java",
+          "marker": "enforce_fails_type_mismatch",
+          "status": "draft"
+        },
+        {
+          "form": "unit",
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AttestationConditionsTest.java",
+          "marker": "enforce_ts_lt",
           "status": "draft"
         }
       ],
-      "boundary": "条件语法外的自由表达式不支持不算违背",
+      "boundary": "条件语法外的自由表达式不支持不算违背；生产链路强制未接线（2026-08-14 裁定：后续工作项，接线形态 strict|grace 可配置默认 strict）",
       "elasticity": "条件子句集可扩展",
       "derived-from": "spec §四 OWNER_ATTEST 注入",
       "feature": "P3",
@@ -947,25 +958,31 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
       "impl-refs": [
-        "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/DefaultAgentTaskResultHandler.java",
-        "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/AbstractAgentExecution.java"
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkAiWriteServiceImpl.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/event/AgentEventEmitter.java"
       ],
       "evidence": [
         {
           "form": "unit",
-          "file": "haha/core/src/test/java/com/afasts/haha/common/flow/exec/node/NodeExecEventTest.java",
-          "marker": "node_exec_signed",
-          "status": "draft"
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/event/AgentEventEmitterTest.java",
+          "marker": "emitNodeExec_carriesCoordinatesAndStatus",
+          "status": "official"
+        },
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/service/impl/WorkAiWriteHandleCallbackEventTest.java",
+          "marker": "handleAgentTaskResult",
+          "status": "official"
         }
       ],
       "boundary": "人工挂起无执行产出不算违背",
       "elasticity": "事件内容字段集可协商",
-      "derived-from": "spec §五 haha/core 行",
+      "derived-from": "03 册 §五 + 2026-08-14 收口点修正：haha/core 零改动（H3），收口于 xixi handleAgentTaskResult（本地+远程回调全汇聚）",
       "feature": "P3",
       "created-at": "2026-08-12T00:00:00.000Z",
       "endorsement": {
@@ -981,7 +998,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
@@ -993,7 +1010,7 @@
           "form": "unit",
           "file": "xixi/common/src/test/java/com/afasts/xixi/common/event/EventVerifierTest.java",
           "marker": "turn_metric_no_identity_branch",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "指标是否落链不在本条",
@@ -1025,7 +1042,7 @@
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
+          "resultsFile": "abst/volumes/p3-013-verify-endpoint.json",
           "status": "draft"
         }
       ],
@@ -1186,7 +1203,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "STALE",
       "refines": [
         "G4"
       ],
@@ -1463,6 +1480,144 @@
         "hash": "df51eee48cc02598235ac5fa61cd29938201717befc576332063d5130857615f",
         "by": "asjayli",
         "at": "2026-08-12T07:10:28.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-002",
+      "level": "behavior",
+      "text": "串行化同项目链写入经 MySQL GET_LOCK",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "PROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/MysqlAuditChainStore.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/audit/AuditChainServiceTest.java",
+          "marker": "append_monotonic_concurrent",
+          "status": "official"
+        }
+      ],
+      "boundary": "跨项目并行不受限不算违背；非 MySQL 环境不适用",
+      "elasticity": "锁 key 命名、超时值可协商",
+      "derived-from": "03 册 §五 + 总册·四.4；2026-08-14 补注册（marker 已真实存在）",
+      "feature": "P3",
+      "created-at": "2026-08-14T00:00:00.000Z",
+      "endorsement": {
+        "hash": "3daa22ea8af258a8f2b965e291bce692a28be6112b5c3077bc5982a53b89dfcd",
+        "by": "asjayli",
+        "at": "2026-08-14T08:00:00.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-004",
+      "level": "behavior",
+      "text": "回填存量 changelog 为签名事件进 EventLog 且保留原操作时间不重签不改写",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "PROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/ChangelogBackfillService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/service/impl/ChangelogBackfillServiceTest.java",
+          "marker": "backfillAll_statusAndDeleteRows_emit2010",
+          "status": "official"
+        },
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/service/impl/ChangelogBackfillServiceTest.java",
+          "marker": "backfillAll_unresolvableOpUser_keptAsSystemIdentity",
+          "status": "official"
+        }
+      ],
+      "boundary": "回填后 changelog 表停写由 P3-005 兜；事件 id 幂等（PK 冲突防重）",
+      "elasticity": "字段归一映射（assignee_id→assigneeId 等）可协商",
+      "derived-from": "03 册 §七存量处置 + 2026-08-14 设计裁定：genesis 快照哈希方案由回填方案替代（签名事件进链强于归档表哈希锚点），原 P3-004 文本按裁定重述",
+      "feature": "P3",
+      "created-at": "2026-08-14T00:00:00.000Z",
+      "endorsement": {
+        "hash": "ca491b76cb452aefaa8ef083ac944463b88d6713c4c5e0471b41d5827c3b29d7",
+        "by": "asjayli",
+        "at": "2026-08-14T08:00:00.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-009",
+      "level": "behavior",
+      "text": "扩展 AgentSpec 携带 scope/conditions 字段",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "PROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/model/agentspecs/AgentSpec.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/ai-central/src/main/java/com/afasts/xixi/ai/model/agentspecs/AgentSpec.java",
+          "anchor": "private String scope;",
+          "status": "official"
+        }
+      ],
+      "boundary": "旧版本 AgentSpec 包无此字段的兼容读取不算违背",
+      "elasticity": "字段序列化形态可协商",
+      "derived-from": "03 册 §五 ai-central 行；2026-08-14 补注册（AgentSpec.java:54/60 字段已落地）",
+      "feature": "P3",
+      "created-at": "2026-08-14T00:00:00.000Z",
+      "endorsement": {
+        "hash": "7ea6247705f5d863e9a88b0ac9c647aa313f85afef8268cbf9443331456db564",
+        "by": "asjayli",
+        "at": "2026-08-14T08:00:00.000Z"
+      }
+    },
+    {
+      "id": "HEHE-P3-012",
+      "level": "behavior",
+      "text": "追溯 AI 事件至 owner 经 attestation 引用",
+      "version": 2,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "UNPROVEN",
+      "refines": [
+        "G3"
+      ],
+      "impl-refs": [
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationServiceTest.java",
+          "marker": "issue_then_verify_passes",
+          "status": "draft"
+        }
+      ],
+      "boundary": "无 attestation 的人作者事件不适用；3010 payload 的 attest tag 注入未实现（2026-08-14 裁定：后续工作项，当前可经 listByAgent 查询追溯），接线前 UNPROVEN",
+      "elasticity": "tag 在 payload 的承载格式可协商",
+      "derived-from": "03 册 §四 OWNER_ATTEST 注入；对照 nip_oa.rs:7-18",
+      "feature": "P3",
+      "created-at": "2026-08-14T00:00:00.000Z",
+      "endorsement": {
+        "hash": "67bc96d0bd1cb0975bd9e91b32378937497051b99b59234d26de55b62c6a4a83",
+        "by": "asjayli",
+        "at": "2026-08-14T08:00:00.000Z"
       }
     }
   ]

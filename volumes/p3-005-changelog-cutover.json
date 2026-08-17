@@ -1,0 +1,1 @@
+{"pass": true, "at": "2026-08-14", "note": "S5-1 e2e: modifyWorkItem 后 easyflow_work_changelog 零新增（行数前后一致），EventLog 出现对应 2010 签名事件且 Ed25519 验签通过；审批留痕路径 syncWorkItem 同样只发事件（curl 直测 + SQL 行数核对，会话记录 2026-08-14）"}

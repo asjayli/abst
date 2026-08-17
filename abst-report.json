@@ -1,0 +1,213 @@
+{
+  "generatedAt": "2026-08-14T08:11:47.000Z",
+  "metrics": {
+    "C(G)": "41.3%（19/46 权重）",
+    "应然批准率": "93.9%（46/49）",
+    "背书积压": "3 条，平均滞留 2.3 天",
+    "域登记率": "0/7",
+    "判定新鲜度": "4 条 STALE：HEHE-P1-004 HEHE-P1-005 HEHE-P2-010 HEHE-P4-007",
+    "违反": "0 VIOLATED",
+    "豁免": "0 条",
+    "孤儿声明": "无",
+    "按 level": "behavior: 47.5%；goal: 0.0%；mission: 0.0%",
+    "按 feature": "mission: 0.0%；P1: 66.7%；P2: 50.0%；P3: 50.0%；P4: 0.0%；P5: 0.0%"
+  },
+  "statements": [
+    {
+      "id": "HEHE-MISSION",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "G1",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "G2",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "G3",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "G4",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "G5",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P1-001",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P1-002",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P1-003",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P1-004",
+      "verdict": "STALE"
+    },
+    {
+      "id": "HEHE-P1-005",
+      "verdict": "STALE"
+    },
+    {
+      "id": "HEHE-P1-006",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P1-007",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P1-008",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P1-009",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P1-010",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P1-011",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P2-001",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P2-002",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P2-006",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P2-009",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P2-010",
+      "verdict": "STALE"
+    },
+    {
+      "id": "HEHE-P2-011",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P3-001",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P3-003",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P3-005",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P3-006",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P3-007",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P3-008",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P3-010",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P3-011",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P3-013",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P4-001",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P4-003",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P4-004",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P4-005",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P4-007",
+      "verdict": "STALE"
+    },
+    {
+      "id": "HEHE-P4-008",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P4-009",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P4-011",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P4-012",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P5-001",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-006",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-011",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P2-014",
+      "verdict": "UNPROVEN"
+    },
+    {
+      "id": "HEHE-P3-002",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P3-004",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P3-009",
+      "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P3-012",
+      "verdict": "UNPROVEN"
+    }
+  ]
+}

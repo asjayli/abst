@@ -1,0 +1,1 @@
+{"pass": true, "at": "2026-08-14", "note": "S5-2 e2e: 三读口（changelogs/myFeed/observability）切 EventChangelogReader 单源后，回填 71 行→72 事件三项目分链，myFeed 返回 total=5 与旧口径抽样一致（op_user 归一 userId 后语义更准）；二次回填幂等（事件 id PK 冲突防重）"}

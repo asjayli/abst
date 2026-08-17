@@ -1,0 +1,1 @@
+{"pass": true, "at": "2026-08-14", "note": "S7 e2e: POST /xixi/audit/chain/verify 对健康链返回 ok=true + 对账 58=58；库内 UPDATE seq=57 hash 单字节篡改后 verify 精确返回 ok=false reason=HASH_MISMATCH failedSeq=57；恢复后复验通过（本地 dev 库直测）"}
