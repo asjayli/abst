@@ -1602,22 +1602,23 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
       "impl-refs": [
-        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java"
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AttestationGateImpl.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/event/AgentEventEmitter.java"
       ],
       "evidence": [
         {
           "form": "unit",
-          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationServiceTest.java",
-          "marker": "issue_then_verify_passes",
-          "status": "draft"
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/event/AgentEventEmitterTest.java",
+          "marker": "emitNodeExec_gatePasses_eventEmitted",
+          "status": "official"
         }
       ],
-      "boundary": "无 attestation 的人作者事件不适用；3010 payload 的 attest tag 注入未实现（2026-08-14 裁定：后续工作项，当前可经 listByAgent 查询追溯），接线前 UNPROVEN",
+      "boundary": "无 attestation 的人作者事件不适用；已接线（2026-08-17）：gate 返回通过的 attestId 注入 3010 payload（追溯链路 3010→attestId→owner_attestation→owner_pubkey）；grace 无记录/边界外省键",
       "elasticity": "tag 在 payload 的承载格式可协商",
       "derived-from": "03 册 §四 OWNER_ATTEST 注入；对照 nip_oa.rs:7-18",
       "feature": "P3",

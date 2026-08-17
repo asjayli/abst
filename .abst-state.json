@@ -54,11 +54,11 @@
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/changelog/EventChangelogReader.java": "10fa6527afca6e202354f03913381465b998c2a6fffd0f8fcafa2055fc2e579c",
     "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java": "3a933f4f287f3844a55aed8c3abbd1a98407bfe57e15328b36dca643bd40ae2d",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkAiWriteServiceImpl.java": "6a304446517ab3fc0211cf2166d976c00978d655927023097a1ccda899a06f4d",
-    "xixi/work-central/src/main/java/com/afasts/xixi/work/event/AgentEventEmitter.java": "6c05b810c735933bffc835102659ca881eaf3d17831789e3d96665a702b88bed",
+    "xixi/work-central/src/main/java/com/afasts/xixi/work/event/AgentEventEmitter.java": "37dda7e70f6cb75b6c9574c6dc1825d6f3a5a5c174a77a37274848b573d4718e",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/MysqlAuditChainStore.java": "4c678bf296080655a41352294760effba15908f4c3d1ecc4a460c7c52c20401d",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/ChangelogBackfillService.java": "7424898af626f1d70205c7c37a19caaf3b28247d92dcf1671d9db8a34fea88ad",
     "xixi/ai-central/src/main/java/com/afasts/xixi/ai/model/agentspecs/AgentSpec.java": "ff0bcaf5320adbf376e33cec9f9805f40b9f776ae6a13d88f067e634cd658508",
-    "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AttestationGateImpl.java": "c368ddb343af77f394f05cfd3d1956974c97f4671444499d68f92d41117ee866"
+    "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AttestationGateImpl.java": "26e28dc0a2d60c1c518b66112620b94075555bbb500438899275c5f674bd3737"
   },
-  "updatedAt": "2026-08-17T09:30:01.000Z"
+  "updatedAt": "2026-08-17T09:46:06.000Z"
 }
