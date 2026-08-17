@@ -886,22 +886,29 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
       "impl-refs": [
-        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java"
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java",
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/controller/audit/AuditChainController.java"
       ],
       "evidence": [
         {
           "form": "unit",
           "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationServiceTest.java",
           "marker": "issue_rejects_self_attestation",
-          "status": "draft"
+          "status": "official"
+        },
+        {
+          "form": "unit",
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AttestationGateImplTest.java",
+          "marker": "strict_noRecords_rejected",
+          "status": "official"
         }
       ],
-      "boundary": "存量的历史行为不追溯；上岗流程挂接签发未接线（2026-08-14 裁定：后续工作项），接线前 UNPROVEN",
+      "boundary": "存量 AgentProfile 无 attestation 的历史行为不追溯；签发触发点取显式签发（POST /attestation/issue + 审计页表单，2026-08-17 接线）——「上岗时」语义化为 strict 模式下先签发后干活（无签发落链被拒）",
       "elasticity": "签发触发点可协商",
       "derived-from": "spec §五 ai-central 行",
       "feature": "P3",
@@ -919,28 +926,29 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G3"
       ],
       "impl-refs": [
-        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java"
+        "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AttestationGateImpl.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/event/AgentEventEmitter.java"
       ],
       "evidence": [
         {
           "form": "unit",
-          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationServiceTest.java",
-          "marker": "enforce_fails_type_mismatch",
-          "status": "draft"
+          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AttestationGateImplTest.java",
+          "marker": "allRevoked_rejectedInBothModes",
+          "status": "official"
         },
         {
           "form": "unit",
-          "file": "xixi/ai-central/src/test/java/com/afasts/xixi/ai/attestation/AttestationConditionsTest.java",
-          "marker": "enforce_ts_lt",
-          "status": "draft"
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/event/AgentEventEmitterTest.java",
+          "marker": "emitNodeExec_gateRejected_eventNotEmitted",
+          "status": "official"
         }
       ],
-      "boundary": "条件语法外的自由表达式不支持不算违背；生产链路强制未接线（2026-08-14 裁定：后续工作项，接线形态 strict|grace 可配置默认 strict）",
+      "boundary": "条件语法外的自由表达式不支持不算违背（H6 不引脚本引擎）；已接线（2026-08-17）：3010 签名后落 EventLog 前强制，strict|grace 双模式可配置默认 strict（fail-closed），grace 无记录放行有记录仍严格",
       "elasticity": "条件子句集可扩展",
       "derived-from": "spec §四 OWNER_ATTEST 注入",
       "feature": "P3",
