@@ -677,7 +677,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "STALE",
+      "verdict": "PROVEN",
       "refines": [
         "G2"
       ],
@@ -687,8 +687,14 @@
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
-          "status": "draft"
+          "resultsFile": "abst/volumes/p2-010-message-verify.json",
+          "status": "official"
+        },
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/message/MessageServiceImplTest.java",
+          "marker": "sendMessage_tamperedSig_rejectedBeforeInsert",
+          "status": "official"
         }
       ],
       "boundary": "P1 存量无签名消息不在边界内",
