@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "at": "2026-08-18T11:10:00Z",
+  "note": "P5 huddle e2e（2026-08-18 19:05-19:10 本地 xixi 3301，双真实登录用户）：admin（owner）+ huddle2（member，复制 admin 凭证新建）同频道。①start（发起者成员校验通过）→ 会话 ACTIVE；②双 WS 连接 → join-ack peerIndex=0/1、peerCount=2；③A 发 24 字节二进制帧（8 字节头 seq=42/ts=1787022000 + 载荷 9,8,7,6,...）→ B 收到逐字节一致帧（seq/ts/bytes/payload[0..3] 全对）；④A 无自回显（broadcast 跳过发送者）；⑤B 挂断 → A 挂断（末人）→ 7020(LAST_LEAVE)；事件链 7010×2→7011×2→7020 落 EventLog，7001/7020 落审计链。附加验证：非频道成员 WS 握手 403（P5-005）；孤儿会话（ACTIVE 无租约）被下一次 start 回收为 ORPHANED。脚本 /tmp/huddle-e2e-two-peers.js（node + xixi-ui ws@6：二进制帧判定用 d instanceof ArrayBuffer，flags.binary 不可用）。"
+}

@@ -14,7 +14,7 @@
     "heihei/heihei/src/main/java/com/afasts/heihei/start/handler/msg/controller/MsgPusher.java": "b91fe5f06a9574bc843bad251f3db7a79f03c4e11698371f810067c07a71dd29",
     "haha/core/src/main/java/com/afasts/haha/common/api/ApiHandler.java": "b1bc03fbd222a44930e20ae8cc83486929b3aab65af97a94fe0d1f316e1fe6c0",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/event/EnumCommEventType.java": "<missing>",
-    "xixi-ui/src/pages/Channel/index.tsx": "38c3addf4b75f3566906b501decadc4eedb282f54e773df91ff16305463bef07",
+    "xixi-ui/src/pages/Channel/index.tsx": "be92027309c3f925aa7142c6ebb2d6e7b6975c88fd018eeb1da8dee286e1b284",
     "xixi-ui/src/Layouts/ProjectLayout.tsx": "c455e6ab60a243485dae48c73eb99de4178ee88cb02e040f0e29e3040256caae",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/HEHEEvent.java": "efca16af623594d46ba2b1cf0ae8fb77aa0c0b81831738eb895dc4e44539651d",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java": "3e02f20b4bbd221dc95ed6009276952d8c7250c22d171fe36d5c37aab7e99fb2",
@@ -45,7 +45,7 @@
     "haha/core/src/main/java/com/afasts/haha/common/agent/memory/MemoryGateway.java": "88f15c52d9881f15100a4c69fb783a8bf2db1d6aa42df55fcd57b9745f2fb6ad",
     "alys/crates/alys-cli/src/main.rs": "83770794b481eb53785d5b406127805ee5c1e3a00af5666955009ffb2b072c6d",
     "xixi-ui/src/pages/AgentMemory/index.tsx": "<missing>",
-    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleService.java": "<missing>",
+    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleService.java": "b836bb04815b9b74b91b22592e762e37800401a1568dacfc187a141a9d457fc0",
     "xixi/scripts/sql/2.3.3/mysql/huddle_session.sql": "<missing>",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/HuddleWebSocketHandler.java": "<missing>",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleProperties.java": "<missing>",
@@ -69,7 +69,14 @@
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelServiceImpl.java": "7bdca58f21336ea56b2632a0325366a77477218454b2fee9b4c226ca7d77b28f",
     "haha/common/src/main/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGateway.java": "<missing>",
     "haha/common/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java": "<missing>",
-    "haha/core/src/main/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGateway.java": "18bfae72cf05062e41aa9079921604bcf2d28d24638632281b19095d36681778"
+    "haha/core/src/main/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGateway.java": "18bfae72cf05062e41aa9079921604bcf2d28d24638632281b19095d36681778",
+    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleServiceImpl.java": "868e98d5e6a303410a1ef2652360eca5afa81994e7e92ee9c84c3f162fc7a0b3",
+    "xixi/scripts/sql/2.3.3/mysql/20260818_huddle-session.sql": "5afd82a51e77cb8fcb03b318a87d1484937d92b5ed41bd368a97de920539dee8",
+    "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java": "2dec7460c8cd7e8e9bf9789a3a12142e3a81e8d9bbc0f670cc22f9b266e5c4cb",
+    "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleWebSocketHandler.java": "b4133d8fcb918c77af7a5e133ca5b9af7b4bb49091f071ba5699ef5ae08c76e2",
+    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleEventEmitter.java": "935197d40cdd8f748bfb1ff465af9747084e0edb2ddab98d2dc1c8ca6333408a",
+    "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java": "a2c18811a08eec4b095a97d3e60b023b6db3c48b36ac31113ddcd5cba9cdb4ae",
+    "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java": "a8736010e37a82ebb828f5d4a7a1b910526de5afbd3a3fe57db42b44a9b75ced"
   },
-  "updatedAt": "2026-08-18T01:34:18.000Z"
+  "updatedAt": "2026-08-18T03:17:17.000Z"
 }

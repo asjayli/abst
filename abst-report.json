@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-18T01:34:31.000Z",
+  "generatedAt": "2026-08-18T03:17:31.000Z",
   "metrics": {
-    "C(G)": "78.0%（39/50 权重）",
-    "应然批准率": "94.3%（50/53）",
-    "背书积压": "3 条，平均滞留 6.1 天",
+    "C(G)": "76.0%（38/50 权重）",
+    "应然批准率": "80.6%（50/62）",
+    "背书积压": "12 条，平均滞留 1.6 天",
     "域登记率": "0/7",
     "判定新鲜度": "2 条 STALE：HEHE-P1-004 HEHE-P1-005",
     "违反": "0 VIOLATED",
     "豁免": "0 条",
     "孤儿声明": "无",
-    "按 level": "behavior: 88.6%；goal: 0.0%；mission: 0.0%",
-    "按 feature": "mission: 0.0%；P1: 66.7%；P2: 62.5%；P3: 92.9%；P4: 92.9%；P5: 0.0%"
+    "按 level": "behavior: 86.4%；goal: 0.0%；mission: 0.0%",
+    "按 feature": "mission: 0.0%；P1: 66.7%；P2: 62.5%；P3: 92.9%；P4: 85.7%；P5: 0.0%"
   },
   "statements": [
     {
@@ -155,7 +155,7 @@
     },
     {
       "id": "HEHE-P4-004",
-      "verdict": "PROVEN"
+      "verdict": "UNPROVEN"
     },
     {
       "id": "HEHE-P4-005",
@@ -224,6 +224,42 @@
     {
       "id": "HEHE-P3-012",
       "verdict": "PROVEN"
+    },
+    {
+      "id": "HEHE-P5-002",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-003",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-004",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-005",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-007",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-008",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-009",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-010",
+      "verdict": "DRAFT"
+    },
+    {
+      "id": "HEHE-P5-012",
+      "verdict": "DRAFT"
     }
   ]
 }

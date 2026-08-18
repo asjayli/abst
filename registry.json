@@ -1193,7 +1193,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "PROVEN",
+      "verdict": "UNPROVEN",
       "refines": [
         "G4"
       ],
@@ -1217,11 +1217,6 @@
         "hash": "f5580b92b3ec314cd0696a188109170ed89c752e5218804648347853672eb00c",
         "by": "asjayli",
         "at": "2026-08-12T07:17:43.000Z"
-      },
-      "acceptance": {
-        "hash": "f5580b92b3ec314cd0696a188109170ed89c752e5218804648347853672eb00c",
-        "by": "asjayli",
-        "at": "2026-08-18T01:27:18.000Z"
       }
     },
     {
@@ -1541,8 +1536,8 @@
     {
       "id": "HEHE-P5-001",
       "level": "behavior",
-      "text": "语音讨论锚定在频道（工作项）上，无锚点不开",
-      "version": 2,
+      "text": "锚定 huddle 会话到已绑工作项的频道（频道 itemType/itemId 非空才可发起）",
+      "version": 3,
       "signatory": "human",
       "executable": true,
       "verdict": "DRAFT",
@@ -1550,13 +1545,13 @@
         "G5"
       ],
       "impl-refs": [
-        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleService.java",
-        "xixi/scripts/sql/2.3.3/mysql/huddle_session.sql"
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleServiceImpl.java",
+        "xixi/scripts/sql/2.3.3/mysql/20260818_huddle-session.sql"
       ],
       "evidence": [
         {
           "form": "static",
-          "file": "xixi/scripts/sql/2.3.3/mysql/huddle_session.sql",
+          "file": "xixi/scripts/sql/2.3.3/mysql/20260818_huddle-session.sql",
           "anchor": "channel_id",
           "status": "draft"
         }
@@ -1570,8 +1565,8 @@
     {
       "id": "HEHE-P5-006",
       "level": "behavior",
-      "text": "语音内容不持久化",
-      "version": 2,
+      "text": "禁止持久化任何音频媒体内容（媒体路径零 DB/Redis/文件调用）",
+      "version": 3,
       "signatory": "auto",
       "executable": true,
       "verdict": "DRAFT",
@@ -1579,13 +1574,14 @@
         "G5"
       ],
       "impl-refs": [
-        "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/HuddleWebSocketHandler.java"
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java",
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleWebSocketHandler.java"
       ],
       "evidence": [
         {
           "form": "static",
-          "file": "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/HuddleWebSocketHandler.java",
-          "anchor": "trySend",
+          "file": "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java",
+          "anchor": "droppedFrames",
           "status": "draft"
         }
       ],
@@ -1598,8 +1594,8 @@
     {
       "id": "HEHE-P5-011",
       "level": "behavior",
-      "text": "语音转写默认关闭，启用须参与者明示同意",
-      "version": 2,
+      "text": "默认关闭 huddle 转写（emitTranscript 存在但全仓无调用点，无触发路径即默认关）",
+      "version": 3,
       "signatory": "human",
       "executable": true,
       "verdict": "DRAFT",
@@ -1607,14 +1603,13 @@
         "G5"
       ],
       "impl-refs": [
-        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleService.java",
-        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleProperties.java"
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleEventEmitter.java"
       ],
       "evidence": [
         {
           "form": "static",
-          "file": "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleProperties.java",
-          "anchor": "transcript",
+          "file": "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleEventEmitter.java",
+          "anchor": "emitTranscript",
           "status": "draft"
         }
       ],
@@ -1794,6 +1789,192 @@
         "by": "asjayli",
         "at": "2026-08-14T08:00:00.000Z"
       }
+    },
+    {
+      "id": "HEHE-P5-002",
+      "level": "behavior",
+      "text": "转发音频帧采用不透明可丢弃语义（per-peer 在途准入 8 帧满即丢，不排队不持久化不解码）",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java"
+      ],
+      "evidence": [],
+      "boundary": "任何音频帧排队/持久化/解码转码行为均违反",
+      "elasticity": "每 peer 缓冲帧数可调",
+      "derived-from": "05 册 §五（draft 待人工背书）；对照 buzz room.rs:8-9",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-003",
+      "level": "behavior",
+      "text": "限制单房间参与者不超过 25 人（服务层在册 + 房间层内存双层拒绝）",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleServiceImpl.java",
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java"
+      ],
+      "evidence": [],
+      "boundary": "超限加入被静默放过不算数",
+      "elasticity": "上限值可配置",
+      "derived-from": "05 册 §五（draft 待人工背书）；对照 room.rs:46-49",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-004",
+      "level": "behavior",
+      "text": "签发 huddle 生命周期事件（7001/7010/7011/7020）落 EventLog，7001/7020 落审计链",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleEventEmitter.java",
+        "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java"
+      ],
+      "evidence": [],
+      "boundary": "仅写库不发事件的实现不算数；媒体帧不落链",
+      "elasticity": "Type 号段以注册为准",
+      "derived-from": "05 册 §五（draft 待人工背书）；对照 ingest.rs:413-416",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-005",
+      "level": "behavior",
+      "text": "拒绝非频道成员加入 huddle（握手 403 + join 双层校验，人/AI 同一判定路径）",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java",
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleServiceImpl.java"
+      ],
+      "evidence": [],
+      "boundary": "绕过频道成员校验的加入路径不算数",
+      "elasticity": "观察者只听模式可后置",
+      "derived-from": "05 册 §五（draft 待人工背书）；spec §7 P5 行 + H2",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-007",
+      "level": "behavior",
+      "text": "heihei 零改动承载 huddle（信令走 xixi 既有 MySQL/Redis 设施，媒体面独立 WS 转发）",
+      "version": 1,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "heihei/heihei/src/main/java/com/afasts/heihei/start/handler/msg/controller/MsgPusher.java"
+      ],
+      "evidence": [],
+      "boundary": "对 MsgPusher/heihei 核心类的任何修改均违反",
+      "elasticity": "信令消息格式可协商",
+      "derived-from": "05 册 §五 D1 裁定（xixi↔heihei 无集成点，原「信令复用」措辞不成立，见 §3.1 修正）",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-008",
+      "level": "behavior",
+      "text": "保持内部 EventVerifier 与身份根 Ed25519 不变（huddle 事件照 P2 既有验签路径）",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [
+        "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java"
+      ],
+      "evidence": [],
+      "boundary": "为互通改内部曲线/验证路径均违反",
+      "elasticity": "无",
+      "derived-from": "05 册 §五（draft 待人工背书）；spec §6 H1/H7",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-009",
+      "level": "behavior",
+      "text": "桥接出站事件以桥自身 secp256k1 密钥重签并引用原作者 pubkey（未实施：Q5 互通需求未确认）",
+      "version": 1,
+      "signatory": "human",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "把桥签名冒充原作者签名不算数",
+      "elasticity": "tag 布局可协商",
+      "derived-from": "05 册 §五（draft 待人工背书）；spec §7 P5 行「若需互操作」",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-010",
+      "level": "behavior",
+      "text": "隔离 Schnorr 验签到独立线程池（未实施：随 P5-009 条件触发）",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "在 Netty I/O 线程上验签不算数",
+      "elasticity": "池大小可调",
+      "derived-from": "05 册 §五（draft 待人工背书）；对照 verification.rs:1-2",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "HEHE-P5-012",
+      "level": "behavior",
+      "text": "保持 haha 图引擎与 heihei 核心类零改动（P5 全部交付不触碰）",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "verdict": "DRAFT",
+      "refines": [
+        "G5"
+      ],
+      "impl-refs": [],
+      "evidence": [],
+      "boundary": "任何对 FlowDispatcherExecutor/MsgPusher 本体的修改均违反",
+      "elasticity": "无",
+      "derived-from": "05 册 §五（draft 待人工背书）；spec §5 H3/H5",
+      "feature": "P5",
+      "created-at": "2026-08-18T00:00:00.000Z"
     }
   ]
 }
