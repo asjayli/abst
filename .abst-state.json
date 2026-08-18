@@ -3,7 +3,7 @@
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/binder/WorkItemChannelBinder.java": "e379f85c1070fbe80e654c668a18fff79bc1e7aa7560c194f5e335cd6339fd28",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/WorkEmployeePermissionService.java": "3d37db6c783d6f96cbbd82c7d741138f0763b38740aacecd74de43cb69071ee3",
     "xixi/talk-central/src/main/resources/sql/talk_ddl.sql": "<missing>",
-    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/message/MessageService.java": "977f347471c5b461dafbe72306f0996c077fafea3d33bb106683010c42d1c5a3",
+    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/message/MessageService.java": "fd281e2004187717e6497230bbe00061c7a37e626a3fd84d86283aceee75b771",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/thread/ThreadService.java": "5fedbc66dcc5ee2d4971f9c405a8ba9a601492ebe305377413ad9972d787da01",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/mention/AgentMentionHandler.java": "f69645cc3b27f3c0a03c448646b0e7010e959e291137e79d6a7e2c91b70ac259",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/route/SmartRouteService.java": "9817960f8ebc749587c0ce22a3c64758ed939092c6fd0351ff9b876cbbb37e1e",
@@ -14,13 +14,13 @@
     "heihei/heihei/src/main/java/com/afasts/heihei/start/handler/msg/controller/MsgPusher.java": "b91fe5f06a9574bc843bad251f3db7a79f03c4e11698371f810067c07a71dd29",
     "haha/core/src/main/java/com/afasts/haha/common/api/ApiHandler.java": "b1bc03fbd222a44930e20ae8cc83486929b3aab65af97a94fe0d1f316e1fe6c0",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/event/EnumCommEventType.java": "<missing>",
-    "xixi-ui/src/pages/Channel/index.tsx": "be92027309c3f925aa7142c6ebb2d6e7b6975c88fd018eeb1da8dee286e1b284",
+    "xixi-ui/src/pages/Channel/index.tsx": "f0d959550b50200b6c242f40ad1bb23f687069a4e13cbb187b2966ba1efeeaec",
     "xixi-ui/src/Layouts/ProjectLayout.tsx": "c455e6ab60a243485dae48c73eb99de4178ee88cb02e040f0e29e3040256caae",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/HEHEEvent.java": "efca16af623594d46ba2b1cf0ae8fb77aa0c0b81831738eb895dc4e44539651d",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java": "3e02f20b4bbd221dc95ed6009276952d8c7250c22d171fe36d5c37aab7e99fb2",
     "xixi/base-central/src/main/java/com/afasts/xixi/security/SmsAuthenticationProvider.java": "fe5dee2ae1619cea9f247d16bca7ad3e98e0ff075458876209b7d06a9d5063cd",
     "xixi/flow-central/src/main/java/com/afasts/xixi/service/impl/UserServiceImpl.java": "554e4cf97c67afd394a9926a48a55ec0a7dafa01b435964067ff08f07d003b20",
-    "xixi/base-central/src/main/java/com/afasts/xixi/security/UserKeyService.java": "1aa9e1173d77e0af440e1ccdeba7248b37126ee0e55042a5bde2d9633ea3fdce",
+    "xixi/base-central/src/main/java/com/afasts/xixi/security/UserKeyService.java": "46b128e8db21fe1fc62b84e8dd8208300de8be9739dc64ae36ee486745af0e55",
     "xixi/scripts/sql/2.3.3/mysql/easyflow_user_key.sql": "<missing>",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EventLogService.java": "7af66cd1c9d98bb10b2d2f938d22af3cc02c11d9bbdff21ffe9bac8fe08f00c0",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/AuditChainService.java": "6cb887570a1a94dbfa228ea5b2359c1781739c0998d36f0456188198d3eec1a9",
@@ -49,7 +49,7 @@
     "xixi/scripts/sql/2.3.3/mysql/huddle_session.sql": "<missing>",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/HuddleWebSocketHandler.java": "<missing>",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleProperties.java": "<missing>",
-    "xixi/base-central/src/main/java/com/afasts/xixi/base/service/KeyExportService.java": "740e3f4cd7809390f6e3a1aeac9d0ac306240c11d078a2546657a30c459b24d1",
+    "xixi/base-central/src/main/java/com/afasts/xixi/base/service/KeyExportService.java": "01b4451eb286863253af7319aafcdc0b0a0d7a19b2d2a081ce1e06e584b8ae39",
     "xixi/scripts/sql/2.3.3/mysql/20260812_p2-event-core-ddl.sql": "c68dd8816332df229936cf7936a0aa1646b00b3b1e695235dcd812d80f0801ac",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/changelog/EventChangelogReader.java": "10fa6527afca6e202354f03913381465b998c2a6fffd0f8fcafa2055fc2e579c",
     "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java": "3a933f4f287f3844a55aed8c3abbd1a98407bfe57e15328b36dca643bd40ae2d",
@@ -78,5 +78,5 @@
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java": "a2c18811a08eec4b095a97d3e60b023b6db3c48b36ac31113ddcd5cba9cdb4ae",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java": "a8736010e37a82ebb828f5d4a7a1b910526de5afbd3a3fe57db42b44a9b75ced"
   },
-  "updatedAt": "2026-08-18T07:13:30.000Z"
+  "updatedAt": "2026-08-18T11:09:25.000Z"
 }

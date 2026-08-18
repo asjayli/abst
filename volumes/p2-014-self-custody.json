@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "at": "2026-08-18T09:59:00Z",
+  "note": "P2-014 客户端私钥自持 e2e（2026-08-18 17:57-17:59 本地 xixi 3301 新包 + MySQL hehe，member e2e_member/E2EMEMBER0000000000000000000001，用例 xixi-ui/e2e/specs/api/p2-014-self-custody.api.spec.ts 10/10 passed，幂等重跑 10/10）。覆盖：①首言触发平台签发托管钥并代签（转自持前对照面）②托管导出明文 seed+pubkey（64hex）③转自持 enc_private_key 置空串+status=self_custody（DB 直查证实 enc=''）④自持后 export 报「已自持无托管私钥可导出」、老 send 报「平台不代签（HEHE-P2-014）」⑤sendSigned 客户端本地签名落库（node WebCrypto 构造六元组，服务端 EventVerifier 重算 id+Ed25519 验签通过=canonical JS↔Java 端到端对拍）⑥篡改 payload 验签拒收+ts 偏差窗外拒收 ⑦authorId 与登录身份不一致拒收 ⑧自持轮换错误 proof（无关私钥签同 material）拒绝、正确 proof（旧钥签 userId\\nnewPubkey）通过+pubkey 换新+新钥发言落库。实施缺陷 2 个已被本 e2e 捕获并修复：updateByUserId 全列更新契约漏 set（convert 漏 pubkey/keyVersion、rotateSelfCustody 漏 enc）、WebCrypto Ed25519 私钥 raw import 不合规（须 PKCS#8 固定前缀+seed）。后端单测 UserKeyServiceTest 9/9+KeyExportServiceTest 9/9+MessageServiceImplTest 17/17；前端 tsc 干净。浏览器侧（WebCrypto non-extractable CryptoKey+IndexedDB）实现落地 xixi-ui（selfCustodyCrypto/userKeypair/KeypairManagerModal/Channel 签名路径/NavHeader 入口），UI 手工验收待后续。"
+}

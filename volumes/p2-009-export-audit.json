@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "at": "2026-08-18T10:02:00Z",
+  "note": "P2-009 明文私钥不出现在存储与日志——导出路径审计（2026-08-18 18:02 本地 xixi 3301）。admin POST /xixi/user/keypair/export 取得 privateKeyHex=d7e2c926…e15b0 后三查：①grep 全量 hehe-admin.log 该 seed 0 次命中（web 层 KeyManagementController 注释禁日志，实测无泄漏）②DB easyflow_user_key.enc_private_key=Base64 密文（前缀 gSBz9Q0+1I78），REGEXP '^[0-9a-f]{64}$'=0（非明文 hex）③存储面补充：自持态 enc 置空串（P2-014 e2e ③ DB 直查证实），平台不持有自持成员私钥任何形态。既有证据链：DDL 列 enc_private_key（static anchor）+ UserKeyServiceTest.no_plaintext_private_key（unit marker，AES 解密闭环+签名验签闭环）+ 本导出审计 e2e。"
+}

@@ -637,7 +637,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G2"
       ],
@@ -650,13 +650,18 @@
           "form": "static",
           "file": "xixi/scripts/sql/2.3.3/mysql/20260812_p2-event-core-ddl.sql",
           "anchor": "enc_private_key",
-          "status": "draft"
+          "status": "official"
         },
         {
           "form": "unit",
           "file": "xixi/base-central/src/test/java/com/afasts/xixi/security/UserKeyServiceTest.java",
           "marker": "no_plaintext_private_key",
-          "status": "draft"
+          "status": "official"
+        },
+        {
+          "form": "e2e",
+          "resultsFile": "abst/volumes/p2-009-export-audit.json",
+          "status": "official"
         }
       ],
       "boundary": "明文落库/落日志判 VIOLATED",
@@ -668,6 +673,11 @@
         "hash": "7fa609204c3ea4eedbf2d23265222fe9c429768699f888e0061c050cc0ff6bed",
         "by": "asjayli",
         "at": "2026-08-12T07:09:06.000Z"
+      },
+      "acceptance": {
+        "hash": "7fa609204c3ea4eedbf2d23265222fe9c429768699f888e0061c050cc0ff6bed",
+        "by": "asjayli",
+        "at": "2026-08-18T11:09:18.000Z"
       }
     },
     {
@@ -677,7 +687,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "PROVEN",
+      "verdict": "STALE",
       "refines": [
         "G2"
       ],
@@ -1389,6 +1399,11 @@
         "hash": "8abc44c8d20920526397d412a959a63f1b8570712e125e76bc96df489242dfc8",
         "by": "asjayli",
         "at": "2026-08-12T07:18:51.000Z"
+      },
+      "acceptance": {
+        "hash": "8abc44c8d20920526397d412a959a63f1b8570712e125e76bc96df489242dfc8",
+        "by": "asjayli",
+        "at": "2026-08-18T01:27:21.000Z"
       }
     },
     {
@@ -1643,7 +1658,7 @@
       "id": "HEHE-P2-014",
       "level": "behavior",
       "version": 2,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "text": "成员可私钥自持：导出本人私钥、客户端本地签名、可轮换；平台与他人不可代签、不可导出他人私钥",
       "signatory": "human",
       "executable": true,
@@ -1656,8 +1671,8 @@
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
-          "status": "draft"
+          "resultsFile": "abst/volumes/p2-014-self-custody.json",
+          "status": "official"
         }
       ],
       "boundary": "存量托管模式双模并存可接受",
@@ -1669,6 +1684,11 @@
         "hash": "df51eee48cc02598235ac5fa61cd29938201717befc576332063d5130857615f",
         "by": "asjayli",
         "at": "2026-08-12T07:10:28.000Z"
+      },
+      "acceptance": {
+        "hash": "df51eee48cc02598235ac5fa61cd29938201717befc576332063d5130857615f",
+        "by": "asjayli",
+        "at": "2026-08-18T11:09:15.000Z"
       }
     },
     {
