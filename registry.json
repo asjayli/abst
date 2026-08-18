@@ -1540,7 +1540,7 @@
       "version": 3,
       "signatory": "human",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
@@ -1553,14 +1553,24 @@
           "form": "static",
           "file": "xixi/scripts/sql/2.3.3/mysql/20260818_huddle-session.sql",
           "anchor": "channel_id",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "独立语音入口不算数",
       "elasticity": "锚定展示形式可协商",
       "derived-from": "spec §7 P5 行 + H2；2026-08-12 背书人撤回：所有语音内容待定",
       "feature": "P5",
-      "created-at": "2026-08-12T00:00:00.000Z"
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "4cab0c0235dfbc1e4020dcb225a792c1dcb53fee18bd8516905b3fe4ab63aa38",
+        "by": "asjayli",
+        "at": "2026-08-18T03:37:56.000Z"
+      },
+      "acceptance": {
+        "hash": "4cab0c0235dfbc1e4020dcb225a792c1dcb53fee18bd8516905b3fe4ab63aa38",
+        "by": "asjayli",
+        "at": "2026-08-18T03:39:50.000Z"
+      }
     },
     {
       "id": "HEHE-P5-006",
@@ -1569,7 +1579,7 @@
       "version": 3,
       "signatory": "auto",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
@@ -1581,15 +1591,20 @@
         {
           "form": "static",
           "file": "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java",
-          "anchor": "droppedFrames",
-          "status": "draft"
+          "anchor": "零持久化",
+          "status": "official"
         }
       ],
       "boundary": "转写文本（默认关闭）除外",
       "elasticity": "无",
       "derived-from": "spec §6（YAGNI/隐私）",
       "feature": "P5",
-      "created-at": "2026-08-12T00:00:00.000Z"
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "04075641f027cf4080e7ade2ed1c3036ae612cb124210d91e977393a0852f982",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:15.000Z"
+      }
     },
     {
       "id": "HEHE-P5-011",
@@ -1598,7 +1613,7 @@
       "version": 3,
       "signatory": "human",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
@@ -1610,14 +1625,24 @@
           "form": "static",
           "file": "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleEventEmitter.java",
           "anchor": "emitTranscript",
-          "status": "draft"
+          "status": "official"
         }
       ],
       "boundary": "默认开启或无明示记录即违反",
       "elasticity": "转写引擎选型开放",
       "derived-from": "spec §2（STT-TTS 后置可选）",
       "feature": "P5",
-      "created-at": "2026-08-12T00:00:00.000Z"
+      "created-at": "2026-08-12T00:00:00.000Z",
+      "endorsement": {
+        "hash": "586aa1147aaf08ed88f9cd6e26834f49cddd6edc26d1180f642590701f576e48",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:27.000Z"
+      },
+      "acceptance": {
+        "hash": "586aa1147aaf08ed88f9cd6e26834f49cddd6edc26d1180f642590701f576e48",
+        "by": "asjayli",
+        "at": "2026-08-18T03:39:57.000Z"
+      }
     },
     {
       "id": "HEHE-P2-014",
@@ -1797,19 +1822,31 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
       "impl-refs": [
         "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/deploy/src/test/java/com/afasts/xixi/web/websocket/handler/HuddleRoomTest.java",
+          "marker": "drops_when_full",
+          "status": "official"
+        }
+      ],
       "boundary": "任何音频帧排队/持久化/解码转码行为均违反",
       "elasticity": "每 peer 缓冲帧数可调",
       "derived-from": "05 册 §五（draft 待人工背书）；对照 buzz room.rs:8-9",
       "feature": "P5",
-      "created-at": "2026-08-18T00:00:00.000Z"
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "3c62bc077665d205e1d6394cf95f29c67d0c023a0cecbde2cb06dd697ab3daf9",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:00.000Z"
+      }
     },
     {
       "id": "HEHE-P5-003",
@@ -1818,7 +1855,7 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
@@ -1826,12 +1863,24 @@
         "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleServiceImpl.java",
         "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/deploy/src/test/java/com/afasts/xixi/web/websocket/handler/HuddleRoomTest.java",
+          "marker": "rejects_26th_peer",
+          "status": "official"
+        }
+      ],
       "boundary": "超限加入被静默放过不算数",
       "elasticity": "上限值可配置",
       "derived-from": "05 册 §五（draft 待人工背书）；对照 room.rs:46-49",
       "feature": "P5",
-      "created-at": "2026-08-18T00:00:00.000Z"
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "02d970622c5418e836b91b5cfed3f26031dba687002bb2e11bafc020d0f1452e",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:03.000Z"
+      }
     },
     {
       "id": "HEHE-P5-004",
@@ -1840,7 +1889,7 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
@@ -1848,12 +1897,24 @@
         "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleEventEmitter.java",
         "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/huddle/HuddleEventEmitterTest.java",
+          "marker": "start_eventAnchored",
+          "status": "official"
+        }
+      ],
       "boundary": "仅写库不发事件的实现不算数；媒体帧不落链",
       "elasticity": "Type 号段以注册为准",
       "derived-from": "05 册 §五（draft 待人工背书）；对照 ingest.rs:413-416",
       "feature": "P5",
-      "created-at": "2026-08-18T00:00:00.000Z"
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "be43919b5f74be8a7e478db10dff2b1d79054ed2f7d7726d5cf4d5b6c9c92ba0",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:07.000Z"
+      }
     },
     {
       "id": "HEHE-P5-005",
@@ -1862,7 +1923,7 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
@@ -1870,12 +1931,24 @@
         "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java",
         "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleServiceImpl.java"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/huddle/HuddleServiceTest.java",
+          "marker": "join_nonMember_rejected",
+          "status": "official"
+        }
+      ],
       "boundary": "绕过频道成员校验的加入路径不算数",
       "elasticity": "观察者只听模式可后置",
       "derived-from": "05 册 §五（draft 待人工背书）；spec §7 P5 行 + H2",
       "feature": "P5",
-      "created-at": "2026-08-18T00:00:00.000Z"
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "cf82a7a43e89d2c64a5948e246810b3f0f1b6e849522f1563ef9c757cfa61ac1",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:11.000Z"
+      }
     },
     {
       "id": "HEHE-P5-007",
@@ -1884,19 +1957,36 @@
       "version": 1,
       "signatory": "human",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
       "impl-refs": [
         "heihei/heihei/src/main/java/com/afasts/heihei/start/handler/msg/controller/MsgPusher.java"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "heihei/heihei/src/main/java/com/afasts/heihei/start/handler/msg/controller/MsgPusher.java",
+          "anchor": "MsgPusher",
+          "status": "official"
+        }
+      ],
       "boundary": "对 MsgPusher/heihei 核心类的任何修改均违反",
       "elasticity": "信令消息格式可协商",
       "derived-from": "05 册 §五 D1 裁定（xixi↔heihei 无集成点，原「信令复用」措辞不成立，见 §3.1 修正）",
       "feature": "P5",
-      "created-at": "2026-08-18T00:00:00.000Z"
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "639945dd5fc87e762a9794bdad4852f0a3353a5f266859dd23315c5642daefb3",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:19.000Z"
+      },
+      "acceptance": {
+        "hash": "639945dd5fc87e762a9794bdad4852f0a3353a5f266859dd23315c5642daefb3",
+        "by": "asjayli",
+        "at": "2026-08-18T03:39:53.000Z"
+      }
     },
     {
       "id": "HEHE-P5-008",
@@ -1905,19 +1995,31 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
       "impl-refs": [
         "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java"
       ],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java",
+          "anchor": "Ed25519",
+          "status": "official"
+        }
+      ],
       "boundary": "为互通改内部曲线/验证路径均违反",
       "elasticity": "无",
       "derived-from": "05 册 §五（draft 待人工背书）；spec §6 H1/H7",
       "feature": "P5",
-      "created-at": "2026-08-18T00:00:00.000Z"
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "c62670c04abc903647168ff414c10008ffe75e258d579f314b18b15caa12add5",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:23.000Z"
+      }
     },
     {
       "id": "HEHE-P5-009",
@@ -1964,17 +2066,29 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "DRAFT",
+      "verdict": "PROVEN",
       "refines": [
         "G5"
       ],
       "impl-refs": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "haha/dispatcher/src/main/java/com/afasts/haha/dispatcher/flow/FlowDispatcherExecutor.java",
+          "anchor": "FlowDispatcherExecutor",
+          "status": "official"
+        }
+      ],
       "boundary": "任何对 FlowDispatcherExecutor/MsgPusher 本体的修改均违反",
       "elasticity": "无",
       "derived-from": "05 册 §五（draft 待人工背书）；spec §5 H3/H5",
       "feature": "P5",
-      "created-at": "2026-08-18T00:00:00.000Z"
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "686a91dbca0113e576bf5391f3f7ec6b6ecd200dabb0d613fac8d3627ae35b58",
+        "by": "asjayli",
+        "at": "2026-08-18T03:38:31.000Z"
+      }
     }
   ]
 }

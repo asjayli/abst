@@ -78,5 +78,5 @@
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java": "a2c18811a08eec4b095a97d3e60b023b6db3c48b36ac31113ddcd5cba9cdb4ae",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java": "a8736010e37a82ebb828f5d4a7a1b910526de5afbd3a3fe57db42b44a9b75ced"
   },
-  "updatedAt": "2026-08-18T03:17:17.000Z"
+  "updatedAt": "2026-08-18T03:40:04.000Z"
 }
