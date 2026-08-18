@@ -260,7 +260,7 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "STALE",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -272,8 +272,8 @@
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
-          "status": "draft"
+          "resultsFile": "abst/volumes/p1-004-mention-trigger.json",
+          "status": "official"
         }
       ],
       "boundary": "L1 路由 miss 时不触发（SmartRouteService match 不产生 launch_log 语义保留）",
@@ -294,7 +294,7 @@
       "version": 1,
       "signatory": "auto",
       "executable": true,
-      "verdict": "STALE",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -304,8 +304,8 @@
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
-          "status": "draft"
+          "resultsFile": "abst/volumes/p1-005-mention-reply.json",
+          "status": "official"
         }
       ],
       "boundary": "执行失败时的错误提示消息不算正式回复",
@@ -1389,11 +1389,6 @@
         "hash": "8abc44c8d20920526397d412a959a63f1b8570712e125e76bc96df489242dfc8",
         "by": "asjayli",
         "at": "2026-08-12T07:18:51.000Z"
-      },
-      "acceptance": {
-        "hash": "8abc44c8d20920526397d412a959a63f1b8570712e125e76bc96df489242dfc8",
-        "by": "asjayli",
-        "at": "2026-08-18T01:27:21.000Z"
       }
     },
     {

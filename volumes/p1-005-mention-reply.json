@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "at": "2026-08-18T07:12:00Z",
+  "note": "P1-005 Agent 回复写回原线程 e2e（与 P1-004 同链路，2026-08-18 15:11-15:12）。mention 触发执行完成后：engine 回调携带 status=SUCCESS + outputData → AgentFlowCallbackController.relayMentionReply 双锚点反解（flowInstId=F6B3BB26...fid 形态 miss → globalSerialNo 命中 pendingByFlowInstId）→ completeMentionReply → MessageService.replyThread 以 author_type=agent 写回。DB 验证：easyflow_talk_message 落行 thread_root_id=d0339401539e4bcba83bc64be714384c992ecc224b1db73fd6e23a61f7c2179e（原 human 消息 id）、type=1020 THREAD_REPLY、author_type=agent、payload.content=「plan 指令已接收，但缺少待规划的任务目标，需补充任务说明后方可执行规划 😊」（真实 claude 输出非模板）。修复链：列宽 Data too long（见 p1-004 卷）+ gsn/fid 双锚点反解。boundary 保留：失败提示不算正式回复（relayMentionReply 仅 SUCCESS 且 outputData 非空才回写，代码路径可见）。"
+}
