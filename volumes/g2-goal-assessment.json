@@ -1,0 +1,6 @@
+{
+  "pass": true,
+  "at": "2026-08-18T14:00:00Z",
+  "note": "G2 原语层平权 goal 达成评估（behavior 子层 7/7 全 PROVEN）。事实聚合：HEHEEvent 六元组+EventIds 冻结方案（P2-001/P2-002，SHA-256(pubkey\\nts\\ntype\\ncanonical)）；EventVerifier 零作者分支（H7 基因锁，P2-010 消息验签双向：落库前验+读路径逐条验，STALE 复证加固含 sendSigned 篡改双拒）；统一身份根（P2-006 pubkey 唯一/P2-008）；私钥托管 AES 密文（P2-009 导出路径审计：日志 0 明文命中+DB 密文）；客户端自持（P2-014：custody 三 gate+sendSigned 只验签不代签+WebCrypto non-extractable CryptoKey+IndexedDB，e2e API 10/10+UI 7/7 幂等）——G2 文本「客户端自持为 P2 必选交付」于 2026-08-18 交付完成。identity 归一补强：human 作者 authorId 强制登录态 userId（两套密钥行分裂修复）。boundary 口径兑现：hash-chain/治理/语音均不在 G2。",
+  "firstEvidenceAt": "2026-08-18T14:00:00Z"
+}

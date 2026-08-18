@@ -1,6 +1,6 @@
 {
   "pass": true,
-  "at": "2026-08-18T08:10:00Z",
-  "note": "验收① e2e 复证（2026-08-18 16:09 本地 xixi 3301 + admin 会话，数字员工 hello-ai-user/test 项目）：POST /xixi/gov/moderate ban → actionId=5；POST /xixi/gov/restriction（横幅数据源，任何登录者可查、人/AI 同判定）→ restricted=true（channelId/expireAt=null 永久）；timeout 600s → actionId=6，restricted=true + expireAt=1787042671885；untimeout → actionId=7，restricted=false；unban 复原 → actionId=8，restricted=false。判定无作者分支（isRestricted 同一路径），前端频道页横幅消费同一端点（Channel/index.tsx muted 状态 + 禁用输入）。写拦截单元级证据：MessageServiceImplTest.sendMessage_bannedAgent_rejectedSamePath。2026-08-17 首证后时效过期（resultsFile mtime 落后新鲜度窗），本卷为重取证刷新。",
+  "at": "2026-08-18T13:45:00Z",
+  "note": "验收① e2e 复证（2026-08-18 21:44 本地 xixi 3301 新包 + admin 会话，数字员工 hello-ai-user/test 项目）：POST /xixi/gov/moderate ban → actionId=9；POST /xixi/gov/restriction（横幅数据源，任何登录者可查、人/AI 同判定）→ restricted=true（channelId/expireAt=null 永久）；timeout 600s → actionId=10，restricted=true + expireAt=1787062884297；unban → actionId=11，restricted=false。判定无作者分支（isRestricted 同一路径）。本轮触发原因：P2-014 发言签名路径改 Channel/index.tsx 命中 impl-refs → §4.3 逐次验收清签署；复证确认禁言横幅与写拦截不受签名路径变更影响（Channel 页 muted 状态消费同一 /gov/restriction 端点 + 禁用输入原样；MessageServiceImplTest.sendMessage_bannedAgent_rejectedSamePath 本日 17/17 回归绿；channel-mention UI 8/8 回归绿含禁言横幅渲染路径）。前史：2026-08-17 首证（actionId 1-4），2026-08-18 16:09 复证（actionId 5-8）。",
   "firstEvidenceAt": "2026-08-17T15:50:00Z"
 }

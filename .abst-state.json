@@ -15,7 +15,7 @@
     "haha/core/src/main/java/com/afasts/haha/common/api/ApiHandler.java": "b1bc03fbd222a44930e20ae8cc83486929b3aab65af97a94fe0d1f316e1fe6c0",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/event/EnumCommEventType.java": "<missing>",
     "xixi-ui/src/pages/Channel/index.tsx": "f0d959550b50200b6c242f40ad1bb23f687069a4e13cbb187b2966ba1efeeaec",
-    "xixi-ui/src/Layouts/ProjectLayout.tsx": "c455e6ab60a243485dae48c73eb99de4178ee88cb02e040f0e29e3040256caae",
+    "xixi-ui/src/Layouts/ProjectLayout.tsx": "7337657042ab4eb3cc7db4b915907215a745aa09458bdbc51fa2927cd14f1426",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/HEHEEvent.java": "efca16af623594d46ba2b1cf0ae8fb77aa0c0b81831738eb895dc4e44539651d",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EventVerifier.java": "3e02f20b4bbd221dc95ed6009276952d8c7250c22d171fe36d5c37aab7e99fb2",
     "xixi/base-central/src/main/java/com/afasts/xixi/security/SmsAuthenticationProvider.java": "fe5dee2ae1619cea9f247d16bca7ad3e98e0ff075458876209b7d06a9d5063cd",
@@ -78,5 +78,5 @@
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java": "a2c18811a08eec4b095a97d3e60b023b6db3c48b36ac31113ddcd5cba9cdb4ae",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java": "a8736010e37a82ebb828f5d4a7a1b910526de5afbd3a3fe57db42b44a9b75ced"
   },
-  "updatedAt": "2026-08-18T12:55:34.000Z"
+  "updatedAt": "2026-08-18T14:18:23.000Z"
 }

@@ -1,0 +1,6 @@
+{
+  "pass": true,
+  "at": "2026-08-18T14:00:00Z",
+  "note": "G4 对称治理与记忆 goal 达成评估（behavior 子层 13/13 全 PROVEN）。事实聚合：限流同桶人/AI 无分支（P4-001/002，RateLimiter 同一 Lua 键路径，Lua JSON 引号缺陷本会话修复）；审核/封禁/归档对称（P4-003 报告/P4-004 禁言横幅与写拦截同判定——本轮 §4.3 重验收：禁言链 ban/timeout/unban 复证 actionId 9-11+UI 回归 8/8/P4-009 审计对称）；alys 记忆承载成立（P4 域记忆条目，MCP/CLI 集成交互以技术验证先行裁定口径兑现）。boundary 口径兑现：alys 内部进化引擎调优/NIP-AE 与 Buzz relay 互操作/语音不在 G4。复核：P2-014 Channel/index.tsx 变更触发的 P4-004 逐次验收已于同日重签 PROVEN。",
+  "firstEvidenceAt": "2026-08-18T14:00:00Z"
+}

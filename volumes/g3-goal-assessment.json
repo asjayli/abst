@@ -1,0 +1,6 @@
+{
+  "pass": true,
+  "at": "2026-08-18T14:00:00Z",
+  "note": "G3 审计与责任链 goal 达成评估（behavior 子层 13/13 全 PROVEN）。事实聚合：hash-chain 自切换点起链+genesis 快照锚定存量（P3 域 001-013，C(G) 审计链域 92.9%）；owner attestation；审计与可观测性共用基础设施（auditChain service，前端 AuditChainPanel）。关键 e2e：审计链接录/验证/篡改检测（timestamp_truncation 毫秒截断缺陷已修——与 P2-010 同款坑）。boundary 口径兑现：限流治理/语音互通不在 G3。复核：2026-08-18 P2-014 扩展 MessageService 未触 P3 impl-refs，无 STALE。",
+  "firstEvidenceAt": "2026-08-18T14:00:00Z"
+}

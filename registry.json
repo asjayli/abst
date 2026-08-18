@@ -1,13 +1,12 @@
 {
   "version": 1,
   "domains": [
-    "COMM",
-    "WORK",
-    "FLOW",
-    "AGENT",
-    "GOV",
-    "MEM",
-    "HUDDLE"
+    "mission",
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5"
   ],
   "statements": [
     {
@@ -17,10 +16,16 @@
       "version": 2,
       "signatory": "human",
       "executable": false,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [],
       "impl-refs": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/volumes/hehe-mission-assessment.json",
+          "status": "official"
+        }
+      ],
       "boundary": "非企业级治理需求（纯消费级社交）不在边界内",
       "elasticity": "双舞台落成的阶段次序可协商",
       "derived-from": "spec 进化方案卷首",
@@ -30,6 +35,11 @@
         "hash": "3194529ca9b43642d998837db2c3f87b26b782edc53a66d019a9d25f84819062",
         "by": "asjayli",
         "at": "2026-08-12T06:05:02.000Z"
+      },
+      "acceptance": {
+        "hash": "3194529ca9b43642d998837db2c3f87b26b782edc53a66d019a9d25f84819062",
+        "by": "asjayli",
+        "at": "2026-08-18T14:16:40.000Z"
       }
     },
     {
@@ -39,12 +49,18 @@
       "version": 2,
       "signatory": "human",
       "executable": false,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "HEHE-MISSION"
       ],
       "impl-refs": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/volumes/g1-goal-assessment.json",
+          "status": "official"
+        }
+      ],
       "boundary": "原语层签名验签、审计链、对称治理、语音互通等后续阶段事项不在本 goal 范围",
       "elasticity": "无",
       "derived-from": "spec 进化方案§七",
@@ -54,6 +70,11 @@
         "hash": "90a9afb65ff332c53d30ac4fa8dd21dbbc3231ab24b8c9e1132116a50c7a92e3",
         "by": "asjayli",
         "at": "2026-08-12T06:05:07.000Z"
+      },
+      "acceptance": {
+        "hash": "90a9afb65ff332c53d30ac4fa8dd21dbbc3231ab24b8c9e1132116a50c7a92e3",
+        "by": "asjayli",
+        "at": "2026-08-18T14:16:17.000Z"
       }
     },
     {
@@ -63,12 +84,18 @@
       "version": 2,
       "signatory": "human",
       "executable": false,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "HEHE-MISSION"
       ],
       "impl-refs": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/volumes/g2-goal-assessment.json",
+          "status": "official"
+        }
+      ],
       "boundary": "hash-chain 审计、owner attestation、限流治理、huddle 不在本 goal 范围",
       "elasticity": "无",
       "derived-from": "spec 进化方案§七",
@@ -78,6 +105,11 @@
         "hash": "439d59ffa66dd4d588d18159b13b9523d25b258d61313688ee86d695e1ff1a01",
         "by": "asjayli",
         "at": "2026-08-12T06:05:12.000Z"
+      },
+      "acceptance": {
+        "hash": "439d59ffa66dd4d588d18159b13b9523d25b258d61313688ee86d695e1ff1a01",
+        "by": "asjayli",
+        "at": "2026-08-18T14:16:23.000Z"
       }
     },
     {
@@ -87,12 +119,18 @@
       "version": 2,
       "signatory": "human",
       "executable": false,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "HEHE-MISSION"
       ],
       "impl-refs": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/volumes/g3-goal-assessment.json",
+          "status": "official"
+        }
+      ],
       "boundary": "RateLimiter 同桶、审核/封禁/归档对称、alys 记忆、语音互通不在本 goal 范围",
       "elasticity": "无",
       "derived-from": "spec 进化方案§七",
@@ -102,6 +140,11 @@
         "hash": "be761fcc92fa45f0ee32de9de0b8b657bdf5851eb50692b4b0ab0a312657833f",
         "by": "asjayli",
         "at": "2026-08-12T06:05:17.000Z"
+      },
+      "acceptance": {
+        "hash": "be761fcc92fa45f0ee32de9de0b8b657bdf5851eb50692b4b0ab0a312657833f",
+        "by": "asjayli",
+        "at": "2026-08-18T14:16:27.000Z"
       }
     },
     {
@@ -111,12 +154,18 @@
       "version": 2,
       "signatory": "human",
       "executable": false,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "HEHE-MISSION"
       ],
       "impl-refs": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/volumes/g4-goal-assessment.json",
+          "status": "official"
+        }
+      ],
       "boundary": "alys 内部进化引擎调优、NIP-AE 与 Buzz relay 互操作、语音 huddle 不在本 goal 范围",
       "elasticity": "无",
       "derived-from": "spec 进化方案§七",
@@ -126,6 +175,11 @@
         "hash": "d9f597e2482e9c9ee7c0b51576427314a2a932f626875f02df1d1032daf130f3",
         "by": "asjayli",
         "at": "2026-08-12T06:18:31.000Z"
+      },
+      "acceptance": {
+        "hash": "d9f597e2482e9c9ee7c0b51576427314a2a932f626875f02df1d1032daf130f3",
+        "by": "asjayli",
+        "at": "2026-08-18T14:16:32.000Z"
       }
     },
     {
@@ -135,12 +189,18 @@
       "version": 2,
       "signatory": "human",
       "executable": false,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "HEHE-MISSION"
       ],
       "impl-refs": [],
-      "evidence": [],
+      "evidence": [
+        {
+          "form": "e2e",
+          "resultsFile": "abst/volumes/g5-goal-assessment.json",
+          "status": "official"
+        }
+      ],
       "boundary": "视频/屏幕共享、STT-TTS 产品化、修改 haha 图引擎与内部 Ed25519 曲线不在本 goal 范围",
       "elasticity": "无",
       "derived-from": "spec 进化方案§七",
@@ -150,6 +210,11 @@
         "hash": "f3c183ff27188a128f4830f461a4d262bfeed444c2b6592e065b91dc9042e4a6",
         "by": "asjayli",
         "at": "2026-08-12T06:18:36.000Z"
+      },
+      "acceptance": {
+        "hash": "f3c183ff27188a128f4830f461a4d262bfeed444c2b6592e065b91dc9042e4a6",
+        "by": "asjayli",
+        "at": "2026-08-18T14:16:36.000Z"
       }
     },
     {
@@ -491,7 +556,7 @@
       "acceptance": {
         "hash": "5390705dd666fb245c132b886fef324be87687ac3ff463de2710ee89d42a2119",
         "by": "asjayli",
-        "at": "2026-08-18T12:11:15.000Z"
+        "at": "2026-08-18T14:12:54.000Z"
       }
     },
     {
@@ -1208,7 +1273,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
@@ -1232,6 +1297,11 @@
         "hash": "f5580b92b3ec314cd0696a188109170ed89c752e5218804648347853672eb00c",
         "by": "asjayli",
         "at": "2026-08-12T07:17:43.000Z"
+      },
+      "acceptance": {
+        "hash": "f5580b92b3ec314cd0696a188109170ed89c752e5218804648347853672eb00c",
+        "by": "asjayli",
+        "at": "2026-08-18T14:12:51.000Z"
       }
     },
     {
