@@ -63,7 +63,13 @@
     "xixi-ui/src/pages/ProjectSpace/components/AgentMemoryPanel.tsx": "85802c9a6bd36caf463290d28665f3646fe8f0cc6a08f61b2e6cc98da755147a",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/controller/ai/AgentMemoryController.java": "027e3972d6ad71e918bfbca14e8fcf7a769b9a380b9e8edf7d2f0a8d4a609dbe",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/gov/TalkArchiveTargetImpl.java": "cc67a0bec02089cc6256c055ce7a5ae89616fe9e607b10e3a48f8fb67669242e",
-    "haha/core/src/main/java/com/afasts/haha/common/agent/equipment/MemoryPolicy.java": "1b89766e2e9a6fe434b83cff7fb8d50034561dde89328031f37af53dbbb40936"
+    "haha/core/src/main/java/com/afasts/haha/common/agent/equipment/MemoryPolicy.java": "1b89766e2e9a6fe434b83cff7fb8d50034561dde89328031f37af53dbbb40936",
+    "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovEventEmitter.java": "a498559f09381b3d88e3fcec7dcdc9472b384a5cbdc5fd31a5103d935a03e705",
+    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelRole.java": "78eb1d66ad724b0bcbcdec4a3b7a382aa4394f8512c8bc366cd2071505c68b3f",
+    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelServiceImpl.java": "7bdca58f21336ea56b2632a0325366a77477218454b2fee9b4c226ca7d77b28f",
+    "haha/common/src/main/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGateway.java": "<missing>",
+    "haha/common/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java": "<missing>",
+    "haha/core/src/main/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGateway.java": "18bfae72cf05062e41aa9079921604bcf2d28d24638632281b19095d36681778"
   },
-  "updatedAt": "2026-08-17T15:51:18.000Z"
+  "updatedAt": "2026-08-18T01:34:18.000Z"
 }

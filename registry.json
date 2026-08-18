@@ -1120,6 +1120,40 @@
       }
     },
     {
+      "id": "HEHE-P4-002",
+      "level": "behavior",
+      "text": "限流拒绝时签发 5010 RATE_LIMIT_HIT 事件落 EventLog，authorPubkey 为被限者且不区分人机",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/RateLimitService.java",
+        "xixi/work-central/src/main/java/com/afasts/xixi/work/gov/GovEventEmitter.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/work-central/src/test/java/com/afasts/xixi/work/gov/RateLimitServiceTest.java",
+          "marker": "overLimit_rejected_eventAnchored",
+          "status": "official"
+        }
+      ],
+      "boundary": "未被拒绝的正常请求不产生该事件；5010 只落 EventLog 不进审计链（高频事件不冲击串行写）",
+      "elasticity": "事件 payload 字段可扩展",
+      "derived-from": "spec §四 GOV 段",
+      "feature": "P4",
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "7545541f70dd38ba71da2b58ae75180ffe1c50d72c8f78d4a1e8dc5f2799e090",
+        "by": "asjayli",
+        "at": "2026-08-18T00:00:00.000Z"
+      },
+      "verdict": "PROVEN"
+    },
+    {
       "id": "HEHE-P4-003",
       "level": "behavior",
       "text": "任何成员（人或数字员工）可被举报，举报进入审核队列且不在频道公开扩散",
@@ -1159,7 +1193,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
@@ -1183,6 +1217,11 @@
         "hash": "f5580b92b3ec314cd0696a188109170ed89c752e5218804648347853672eb00c",
         "by": "asjayli",
         "at": "2026-08-12T07:17:43.000Z"
+      },
+      "acceptance": {
+        "hash": "f5580b92b3ec314cd0696a188109170ed89c752e5218804648347853672eb00c",
+        "by": "asjayli",
+        "at": "2026-08-18T01:27:18.000Z"
       }
     },
     {
@@ -1218,6 +1257,40 @@
         "by": "asjayli",
         "at": "2026-08-12T07:17:46.000Z"
       }
+    },
+    {
+      "id": "HEHE-P4-006",
+      "level": "behavior",
+      "text": "在频道成员角色中注册 agent 值（ChannelRole.AGENT），频道层角色校验对人机成员走同一代码路径",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelRole.java",
+        "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelServiceImpl.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "xixi/talk-central/src/test/java/com/afasts/xixi/talk/channel/ChannelServiceTest.java",
+          "marker": "grantAgent_explicitGrant_validatesWorkItemPermission",
+          "status": "official"
+        }
+      ],
+      "boundary": "agent 经 grantAgent 显式授权入口加入是治理约束（对照 Buzz Bot 语义），不是权限判定分支；changeRole/removeMember 校验人机同方法",
+      "elasticity": "角色枚举后续可扩展（如 observer）",
+      "derived-from": "spec §二 频道成员角色行",
+      "feature": "P4",
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "5fcf8810f98a0534f4470cd16e5c702b2e9f6a005edea795020121277a183b7b",
+        "by": "asjayli",
+        "at": "2026-08-18T00:00:00.000Z"
+      },
+      "verdict": "PROVEN"
     },
     {
       "id": "HEHE-P4-007",
@@ -1296,7 +1369,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
@@ -1321,7 +1394,45 @@
         "hash": "8abc44c8d20920526397d412a959a63f1b8570712e125e76bc96df489242dfc8",
         "by": "asjayli",
         "at": "2026-08-12T07:18:51.000Z"
+      },
+      "acceptance": {
+        "hash": "8abc44c8d20920526397d412a959a63f1b8570712e125e76bc96df489242dfc8",
+        "by": "asjayli",
+        "at": "2026-08-18T01:27:21.000Z"
       }
+    },
+    {
+      "id": "HEHE-P4-010",
+      "level": "behavior",
+      "text": "记忆写入 alys 前经 EncryptingMemoryGateway 用 heihei AES 加密、召回后在 Java 侧解密，6001/6010 事件 payload 只存内容哈希",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGateway.java"
+      ],
+      "evidence": [
+        {
+          "form": "unit",
+          "file": "haha/core/src/test/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGatewayTest.java",
+          "marker": "writeback_encryptsBeforeDelegate",
+          "status": "official"
+        }
+      ],
+      "boundary": "Objective 区明文是显式取舍；CLI 集成模式下 alys store 恒 obj+cog 双写且整条加密毁 FTS 检索，故加密默认关闭、装饰层就位可按策略开启",
+      "elasticity": "加密覆盖的 zone 集合可扩展",
+      "derived-from": "spec §五 alys 行（记忆加密复用 AES）",
+      "feature": "P4",
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "46cfe3bd0598adcfd7b26078eb897db810c65155096ea862045a6ff287e58991",
+        "by": "asjayli",
+        "at": "2026-08-18T00:00:00.000Z"
+      },
+      "verdict": "PROVEN"
     },
     {
       "id": "HEHE-P4-011",
@@ -1363,7 +1474,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G4"
       ],
@@ -1387,7 +1498,45 @@
         "hash": "1549acdc3a1777bd437b61763dff0836f4d215456567c8efec982612b074bc83",
         "by": "asjayli",
         "at": "2026-08-12T07:18:56.000Z"
+      },
+      "acceptance": {
+        "hash": "1549acdc3a1777bd437b61763dff0836f4d215456567c8efec982612b074bc83",
+        "by": "asjayli",
+        "at": "2026-08-18T01:27:23.000Z"
       }
+    },
+    {
+      "id": "HEHE-P4-013",
+      "level": "behavior",
+      "text": "通过进程外 CLI 子进程调用 alys，JVM 进程内不引入 Rust runtime",
+      "version": 1,
+      "signatory": "auto",
+      "executable": true,
+      "refines": [
+        "G4"
+      ],
+      "impl-refs": [
+        "haha/core/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java"
+      ],
+      "evidence": [
+        {
+          "form": "static",
+          "file": "haha/core/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java",
+          "anchor": "ProcessBuilder",
+          "status": "official"
+        }
+      ],
+      "boundary": "alys 作为独立部署的进程存在不算违反",
+      "elasticity": "无",
+      "derived-from": "spec §一 H1、§六 不吞噬清单",
+      "feature": "P4",
+      "created-at": "2026-08-18T00:00:00.000Z",
+      "endorsement": {
+        "hash": "7ece502a3dc5f8b61ad2b559f398c342d556eea57972cbf96cf96b5df5a7c183",
+        "by": "asjayli",
+        "at": "2026-08-18T00:00:00.000Z"
+      },
+      "verdict": "PROVEN"
     },
     {
       "id": "HEHE-P5-001",
