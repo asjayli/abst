@@ -5,7 +5,7 @@
     "xixi/talk-central/src/main/resources/sql/talk_ddl.sql": "<missing>",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/message/MessageService.java": "977f347471c5b461dafbe72306f0996c077fafea3d33bb106683010c42d1c5a3",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/thread/ThreadService.java": "5fedbc66dcc5ee2d4971f9c405a8ba9a601492ebe305377413ad9972d787da01",
-    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/mention/AgentMentionHandler.java": "521c45fb794a9a07fdb34a93b338095f8245d4392effa538ab5978997eae6eff",
+    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/mention/AgentMentionHandler.java": "f69645cc3b27f3c0a03c448646b0e7010e959e291137e79d6a7e2c91b70ac259",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/route/SmartRouteService.java": "9817960f8ebc749587c0ce22a3c64758ed939092c6fd0351ff9b876cbbb37e1e",
     "haha/core/src/main/java/com/afasts/haha/common/agent/executor/AgentExecutorFactory.java": "860bf27cdc66fbf97ec6cf19eb58f68bbb484f861ba02dc057af7fa87dabe767",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/channel/ChannelService.java": "4ae0cc1af13400909f6ca4b7476b0a107a8c94f68dea02bf29a14f07b115006a",
@@ -30,7 +30,7 @@
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkInboxServiceImpl.java": "04721218b3b56f9b05dff038e617259f51818fc091028a692d709b99809384ae",
     "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/AgentProfileOperationService.java": "dc3266a156cc3602e553b30d48f022e5a5e7eb132ae0f58ac76af5685cae4d65",
     "xixi/ai-central/src/main/java/com/afasts/xixi/ai/service/AgentOwnerAttestationService.java": "<missing>",
-    "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/DefaultAgentTaskResultHandler.java": "dc8f260c5977f125b8bbb52bf217b0178736d66d9936c4d88d34d77fdc6b581b",
+    "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/DefaultAgentTaskResultHandler.java": "ddf7fa5cfa076999333b52291dcfab9af300144fa1d01c193bcc04a49ada603a",
     "haha/core/src/main/java/com/afasts/haha/common/flow/exec/node/AbstractAgentExecution.java": "6adde2ba4ec65368a5df836206c4983383494ff5443da2c6cf419cce22b0c747",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/controller/audit/AuditChainController.java": "6a9cca1805da04c216ad0b451677f75b496aa2de97810e29087bd06de9c3ba08",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/controller/wakeup/WakeUpController.java": "bc2cc3ba381ccfd4c8e29885eb7427da2c826e684dc4df0afd6b29629f17cde6",
@@ -78,5 +78,5 @@
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java": "a2c18811a08eec4b095a97d3e60b023b6db3c48b36ac31113ddcd5cba9cdb4ae",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java": "a8736010e37a82ebb828f5d4a7a1b910526de5afbd3a3fe57db42b44a9b75ced"
   },
-  "updatedAt": "2026-08-18T03:40:04.000Z"
+  "updatedAt": "2026-08-18T07:13:30.000Z"
 }
