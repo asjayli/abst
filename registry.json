@@ -692,7 +692,7 @@
       "version": 2,
       "signatory": "auto",
       "executable": true,
-      "verdict": "STALE",
+      "verdict": "PROVEN",
       "refines": [
         "G2"
       ],
