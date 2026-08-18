@@ -463,7 +463,7 @@
       "version": 2,
       "signatory": "human",
       "executable": true,
-      "verdict": "UNPROVEN",
+      "verdict": "PROVEN",
       "refines": [
         "G1"
       ],
@@ -474,8 +474,8 @@
       "evidence": [
         {
           "form": "e2e",
-          "resultsFile": "abst/evidence-results.json",
-          "status": "draft"
+          "resultsFile": "abst/volumes/p1-010-workitem-channel-entry.json",
+          "status": "official"
         }
       ],
       "boundary": "视觉细节/交互稿不在本条",
@@ -487,6 +487,11 @@
         "hash": "5390705dd666fb245c132b886fef324be87687ac3ff463de2710ee89d42a2119",
         "by": "asjayli",
         "at": "2026-08-12T06:49:36.000Z"
+      },
+      "acceptance": {
+        "hash": "5390705dd666fb245c132b886fef324be87687ac3ff463de2710ee89d42a2119",
+        "by": "asjayli",
+        "at": "2026-08-18T12:11:15.000Z"
       }
     },
     {

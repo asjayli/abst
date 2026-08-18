@@ -1,0 +1,5 @@
+{
+  "pass": true,
+  "at": "2026-08-18T11:25:00Z",
+  "note": "P1-010 工作项页频道入口 e2e（2026-08-18 19:23-19:25 本地 xixi-ui dev 3111 + xixi 3301，用例 xixi-ui/e2e/specs/channel-mention.spec.ts 8/8 passed，幂等重跑 8/8）。正身用例两枚：①锚点一致性——admin 打开 /project/e2e-test-dev/work 看板（默认 view=board），点 BoardCard（div[draggable] 唯一稳定锚点）开 WorkItemDrawer（role=dialog），抽屉头提取 32hex 工作项 id，切「频道」tab（button.hehe-tab），channel-panel 头部「频道 · 」渲染并包含该 itemId=锚定所打开工作项（「直接查看」实义）；②普通成员视角——e2e_member（E2EMEMBER…0001，setup.js ensureMemberUser 幂等建号+项目绑定，密码复制 admin）登录→同看板点卡开抽屉→频道 tab→发言「E2E成员发言_时间戳」→消息流（channel-message-stream）内回显=「参与」正身。辅助覆盖：频道入口 tab 存在、admin 发言落流、@ 候选弹层（人+数字员工）点选插入、线程面板开合与回复聚合。过程中修复 2 处用例缺陷：wp4 eslint-loader 对 TS DOM 类型注解（IDB*）误报 no-undef 致 dev server 编译失败（selfCustodyCrypto 文件头 eslint-disable+注释）；Playwright isVisible() 即时返回不等待（timeout 无效）全部改 waitFor visible；看板卡选择器从表格行改为 div[draggable=true]（BoardCard 无 class 锚点）。"
+}
