@@ -23,7 +23,7 @@
     "xixi/base-central/src/main/java/com/afasts/xixi/security/UserKeyService.java": "d61f14d4bb178855fd748fe37b30607a57db8b78674c45e5de193986f09b5414",
     "xixi/scripts/sql/2.3.3/mysql/easyflow_user_key.sql": "<missing>",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EventLogService.java": "7af66cd1c9d98bb10b2d2f938d22af3cc02c11d9bbdff21ffe9bac8fe08f00c0",
-    "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/AuditChainService.java": "ceaa9cfdfe7608bc9dc9c15476f7e917f6fbe828cd3e582dbe59d3331287b8b4",
+    "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/AuditChainService.java": "0d930b301da488ec91dd15f49f863df0f20eee9be354c8f6b30f636478159fad",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkItemServiceImpl.java": "19fff80075e4c614f2b9c092d99986949f2c6d421f6c97aebf25bd3ff2bb6d6e",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkApprovalSyncServiceImpl.java": "3c821e677845b2322ac6769a2f9b431eaa4f022908878bc21efd186d9dd90d34",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/WorkChangelogObservabilityService.java": "ab344d94d963b5647978cf09934a658107809185ed73a13820b34987d81d5716",
@@ -52,13 +52,13 @@
     "xixi/base-central/src/main/java/com/afasts/xixi/base/service/KeyExportService.java": "1437c9f218e7e54d95deaa1e745637a49e8f779216a1efee3d212d5e3ffe43d6",
     "xixi/scripts/sql/2.3.3/mysql/20260812_p2-event-core-ddl.sql": "c68dd8816332df229936cf7936a0aa1646b00b3b1e695235dcd812d80f0801ac",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/changelog/EventChangelogReader.java": "10fa6527afca6e202354f03913381465b998c2a6fffd0f8fcafa2055fc2e579c",
-    "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java": "9e593acd1a3d6e4df21757a31c99496e6978824ca18cdcd33998894eddb58c0a",
+    "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java": "02b47e3ba15a3341eda046a0eeaffa6dc9981b0fc64a1cb5b5b7f78ea0084da0",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkAiWriteServiceImpl.java": "07a30836299a3583cc023ef4f8add7d3175b5056749639aea4797630def5403e",
-    "xixi/work-central/src/main/java/com/afasts/xixi/work/event/AgentEventEmitter.java": "edb306e70319037bbf89f330ec13b6a787f542623663b768c16afdafd626c355",
+    "xixi/work-central/src/main/java/com/afasts/xixi/work/event/AgentEventEmitter.java": "12372756c557ca9ee0cfa2dda16b4dd5a7f4cb6e21bd2889876fd03b47416f28",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/MysqlAuditChainStore.java": "4c678bf296080655a41352294760effba15908f4c3d1ecc4a460c7c52c20401d",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/ChangelogBackfillService.java": "7088c0a264f4f7f229fcd4bb86ec5ba223c05db0568cb60cc4a5e8ae002484db",
     "xixi/ai-central/src/main/java/com/afasts/xixi/ai/model/agentspecs/AgentSpec.java": "ff0bcaf5320adbf376e33cec9f9805f40b9f776ae6a13d88f067e634cd658508",
-    "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AttestationGateImpl.java": "73862f91e5850dc2239bf66abf6763a81fcb9cfed3309c94465fa3d6db5515a7",
+    "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AttestationGateImpl.java": "2306ea2b1ba4debe2a5120ecec91c70a1f68a04b3cd11610c1f404d648d83582",
     "haha/core/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java": "3a3c9efb1baf9a6f801ce8b795640e13a481d78a80168d4bfd8bc815979c75ce",
     "xixi-ui/src/pages/ProjectSpace/components/AgentMemoryPanel.tsx": "85802c9a6bd36caf463290d28665f3646fe8f0cc6a08f61b2e6cc98da755147a",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/controller/ai/AgentMemoryController.java": "1d2c00826988a02512f828f677f2f4ef0b1f0c6f556a8dc9d72c16e1d7e82488",
@@ -78,5 +78,5 @@
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java": "0d4e9760cce171addf28ff5ef5ad4dff71b87a9e4daa0d671939f6be518a0771",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java": "a8736010e37a82ebb828f5d4a7a1b910526de5afbd3a3fe57db42b44a9b75ced"
   },
-  "updatedAt": "2026-08-23T18:17:36.000Z"
+  "updatedAt": "2026-08-23T18:56:46.000Z"
 }
