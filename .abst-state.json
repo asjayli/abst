@@ -23,7 +23,7 @@
     "xixi/base-central/src/main/java/com/afasts/xixi/security/UserKeyService.java": "d61f14d4bb178855fd748fe37b30607a57db8b78674c45e5de193986f09b5414",
     "xixi/scripts/sql/2.3.3/mysql/easyflow_user_key.sql": "<missing>",
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EventLogService.java": "7af66cd1c9d98bb10b2d2f938d22af3cc02c11d9bbdff21ffe9bac8fe08f00c0",
-    "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/AuditChainService.java": "6cb887570a1a94dbfa228ea5b2359c1781739c0998d36f0456188198d3eec1a9",
+    "xixi/work-central/src/main/java/com/afasts/xixi/work/audit/AuditChainService.java": "ceaa9cfdfe7608bc9dc9c15476f7e917f6fbe828cd3e582dbe59d3331287b8b4",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkItemServiceImpl.java": "19fff80075e4c614f2b9c092d99986949f2c6d421f6c97aebf25bd3ff2bb6d6e",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/impl/WorkApprovalSyncServiceImpl.java": "3c821e677845b2322ac6769a2f9b431eaa4f022908878bc21efd186d9dd90d34",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/WorkChangelogObservabilityService.java": "ab344d94d963b5647978cf09934a658107809185ed73a13820b34987d81d5716",
@@ -49,7 +49,7 @@
     "xixi/scripts/sql/2.3.3/mysql/huddle_session.sql": "<missing>",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/HuddleWebSocketHandler.java": "<missing>",
     "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleProperties.java": "<missing>",
-    "xixi/base-central/src/main/java/com/afasts/xixi/base/service/KeyExportService.java": "01b4451eb286863253af7319aafcdc0b0a0d7a19b2d2a081ce1e06e584b8ae39",
+    "xixi/base-central/src/main/java/com/afasts/xixi/base/service/KeyExportService.java": "4b4699a5b3918e963f09c1c20df1273e3f81150667ddb97b4099b95d55553bc5",
     "xixi/scripts/sql/2.3.3/mysql/20260812_p2-event-core-ddl.sql": "c68dd8816332df229936cf7936a0aa1646b00b3b1e695235dcd812d80f0801ac",
     "xixi/work-central/src/main/java/com/afasts/xixi/work/service/changelog/EventChangelogReader.java": "10fa6527afca6e202354f03913381465b998c2a6fffd0f8fcafa2055fc2e579c",
     "xixi/ai-central/src/main/java/com/afasts/xixi/ai/attestation/AgentOwnerAttestationService.java": "355e5efd448e3d3e4ef8767085a60595aaad604784ea84647460ce1ffc5c15b9",
@@ -70,7 +70,7 @@
     "haha/common/src/main/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGateway.java": "<missing>",
     "haha/common/src/main/java/com/afasts/haha/common/agent/memory/CliMemoryGateway.java": "<missing>",
     "haha/core/src/main/java/com/afasts/haha/common/agent/memory/EncryptingMemoryGateway.java": "18bfae72cf05062e41aa9079921604bcf2d28d24638632281b19095d36681778",
-    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleServiceImpl.java": "868e98d5e6a303410a1ef2652360eca5afa81994e7e92ee9c84c3f162fc7a0b3",
+    "xixi/talk-central/src/main/java/com/afasts/xixi/talk/huddle/HuddleServiceImpl.java": "ea5f36d89cf56a36e8922729a748646b43d892f4246837c1a21fda1424762e44",
     "xixi/scripts/sql/2.3.3/mysql/20260818_huddle-session.sql": "5afd82a51e77cb8fcb03b318a87d1484937d92b5ed41bd368a97de920539dee8",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleRoom.java": "2dec7460c8cd7e8e9bf9789a3a12142e3a81e8d9bbc0f670cc22f9b266e5c4cb",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/handler/HuddleWebSocketHandler.java": "b4133d8fcb918c77af7a5e133ca5b9af7b4bb49091f071ba5699ef5ae08c76e2",
@@ -78,5 +78,5 @@
     "xixi/common/src/main/java/com/afasts/xixi/common/event/EnumEventType.java": "a2c18811a08eec4b095a97d3e60b023b6db3c48b36ac31113ddcd5cba9cdb4ae",
     "xixi/deploy/src/main/java/com/afasts/xixi/web/websocket/interceptor/HuddleHandshakeInterceptor.java": "a8736010e37a82ebb828f5d4a7a1b910526de5afbd3a3fe57db42b44a9b75ced"
   },
-  "updatedAt": "2026-08-19T15:37:24.000Z"
+  "updatedAt": "2026-08-22T03:40:05.000Z"
 }
