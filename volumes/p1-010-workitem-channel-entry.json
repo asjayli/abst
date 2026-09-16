@@ -1,6 +1,0 @@
-{
-  "pass": true,
-  "at": "2026-08-18T13:48:00Z",
-  "note": "P1-010 工作项页频道入口 e2e（2026-08-18 19:23 首证 8/8；21:5x 复证 8/8 本地 xixi-ui dev 3111 + xixi 3301，用例 xixi-ui/e2e/specs/channel-mention.spec.ts）。正身用例两枚：①锚点一致性——admin 打开 /project/e2e-test-dev/work 看板（默认 view=board），点 BoardCard（div[draggable] 唯一稳定锚点）开 WorkItemDrawer（role=dialog），抽屉头提取 32hex 工作项 id，切「频道」tab（button.hehe-tab），channel-panel 头部「频道 · 」渲染并包含该 itemId=锚定所打开工作项（「直接查看」实义）；②普通成员视角——e2e_member 登录→同看板点卡开抽屉→频道 tab→发言→消息流内回显=「参与」正身。辅助覆盖：频道入口 tab、admin 发言落流、@ 候选弹层、线程面板聚合。复证轮背景：P2-014 同日改 ProjectLayout.tsx（顶栏头像密钥管理入口）命中 impl-refs——复证确认频道入口旅程不受影响，且 Channel/index.tsx 签名路径与身份归一（human authorId=登录态 userId）变更后成员发言仍绿（beforeAll SQL 重置防 P2-014 自持态互踩）。用例缺陷修复史：isVisible 即时返回改 waitFor visible、看板卡锚点 div[draggable=true]、wp4 eslint 对 IDB* 类型注解误报 no-undef。",
-  "firstEvidenceAt": "2026-08-18T11:25:00Z"
-}
