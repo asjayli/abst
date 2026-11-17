@@ -3,5 +3,10 @@
 *.swp
 *~
 
-# engine 在仓库内试运行产生的状态（目标仓库的资产不应入库到本仓库）
+# 目标仓库运行时产物防误提交（本仓库是方法论本体，不是被测目标）
 /abst/
+/registry.json
+/evidence-results.json
+/volumes/
+/.abst-state.json
+/abst-report.json

@@ -110,7 +110,66 @@ ok "R7c：重新背书 + 复证后放行" 0 "$ENGINE" gate --files src/quota.ts
 
 # R8 豁免超期 → check 拦截
 jq '(.statements += [{"id": "W-001", "text": "体验类", "level": "behavior", "feature": "core", "signatory": "auto", "executable": false, "weight": 1, "version": 1, "derived-from": "code", "boundary": "无", "elasticity": "无", "created-at": "2026-08-10T00:00:00.000Z", "waiver": {"reason": "体感", "expires": "2026-01-01T00:00:00.000Z", "by": "tester"}}])' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+"$ENGINE" endorse W-001 --by tester >/dev/null # 豁免随入库背书审批（§4.3：豁免审批在②完成）
 ok "R8：waiver 超期 → doctor 非零" 1 "$ENGINE" doctor
+
+# R8b 豁免续期恢复干净基线；R8c init 防呆：既有 registry 拒绝、--force 补齐
+jq '(.statements[] | select(.id=="W-001")).waiver.expires = "2099-01-01T00:00:00.000Z"' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+ok "R8b：豁免续期 → doctor 通过" 0 "$ENGINE" doctor
+ok "R8c：init 既有资产 → 拒绝" 2 "$ENGINE" init
+ok "R8d：init --force 仅补缺失" 0 "$ENGINE" init --force
+
+# R10 e2e 卷宗回读：pass=false 变红 → pass=true 恢复（契约：顶层 .pass 布尔）
+jq '(.statements += [{"id": "E2E-001", "text": "e2e 委托声明", "level": "behavior", "feature": "core", "signatory": "auto", "executable": true, "weight": 1, "version": 1, "derived-from": "spec", "boundary": "无", "elasticity": "无", "created-at": "2026-08-10T00:00:00.000Z", "impl-refs": ["src/deleg.ts"], "evidence": [{"id": "ex1", "form": "e2e", "status": "official", "resultsFile": "abst/evidence/x.json"}]}])' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+"$ENGINE" endorse E2E-001 --by tester >/dev/null
+mkdir -p abst/evidence
+printf '{"pass": false}' > abst/evidence/x.json
+sleep 1
+"$ENGINE" verify >/dev/null
+ok "R10：e2e 卷宗 pass=false → VIOLATED 拦截" 1 "$ENGINE" gate --files src/deleg.ts
+sleep 1
+printf '{"pass": true, "at": "2026-08-10T00:00:00Z", "note": "复证叙述"}' > abst/evidence/x.json
+"$ENGINE" verify >/dev/null
+ok "R10b：e2e 卷宗 pass=true → 恢复放行" 0 "$ENGINE" gate --files src/deleg.ts
+
+# R15 gate --all 全库放行 + 度量输出成对
+ok "R15：gate --all 全库放行" 0 "$ENGINE" gate --all
+ok_out "R15b：report 域登记率输出" "域登记率" "$ENGINE" report
+ok_out "R15c：report 背书积压输出" "背书积压" "$ENGINE" report
+
+# R11 批量 endorse：事务性 + 幂等
+jq '(.statements += [
+  {"id": "B-001", "text": "批量一", "level": "contract", "feature": "core", "signatory": "auto", "executable": true, "weight": 1, "version": 1, "derived-from": "spec", "boundary": "无", "elasticity": "无", "created-at": "2026-08-10T00:00:00.000Z", "impl-refs": ["src/deleg.ts"]},
+  {"id": "B-002", "text": "批量二", "level": "contract", "feature": "core", "signatory": "auto", "executable": true, "weight": 1, "version": 1, "derived-from": "spec", "boundary": "无", "elasticity": "无", "created-at": "2026-08-10T00:00:00.000Z", "impl-refs": ["src/deleg.ts"]}])' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+ok "R11：批量 endorse" 0 "$ENGINE" endorse --ids B-001,B-002 --by tester
+ok "R11b：批量 endorse 幂等" 0 "$ENGINE" endorse --ids B-001,B-002 --by tester
+ok "R11c：不存在 id 整批拒绝" 2 "$ENGINE" endorse --ids B-001,NOPE --by tester
+
+# R12 accept --files 按 Δ 一批重签
+echo 'export const CORE = 3;' > src/core.ts
+sleep 1
+"$ENGINE" verify >/dev/null
+ok "R12：impl 变更 → human 待签拦截" 1 "$ENGINE" gate --files src/core.ts
+ok "R12b：accept --files 按 Δ 一批签署" 0 "$ENGINE" accept --files src/core.ts --by tester
+ok "R12c：签署后放行" 0 "$ENGINE" gate --files src/core.ts
+ok "R12d：无待签幂等" 0 "$ENGINE" accept --files src/core.ts --by tester
+
+# R13 check 拦截项：refines 悬空 / id 重复 / waiver 三元组缺失
+jq '(.statements += [{"id": "BAD-001", "text": "悬空", "level": "contract", "feature": "core", "signatory": "auto", "executable": true, "weight": 1, "version": 1, "derived-from": "spec", "boundary": "无", "elasticity": "无", "refines": ["NOPE"], "created-at": "2026-08-10T00:00:00.000Z", "impl-refs": ["src/deleg.ts"]}])' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+ok "R13：refines 悬空 → check 拦截" 1 "$ENGINE" check
+jq '(.statements += [{"id": "MISSION-001", "text": "重复 id", "level": "contract", "feature": "core", "signatory": "auto", "executable": true, "weight": 1, "version": 1, "derived-from": "spec", "boundary": "无", "elasticity": "无", "created-at": "2026-08-10T00:00:00.000Z", "impl-refs": ["src/deleg.ts"]}])' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+ok "R13b：id 重复 → check 拦截" 1 "$ENGINE" check
+jq '(.statements += [{"id": "W-002", "text": "坏豁免", "level": "behavior", "feature": "core", "signatory": "auto", "executable": false, "weight": 1, "version": 1, "derived-from": "spec", "boundary": "无", "elasticity": "无", "created-at": "2026-08-10T00:00:00.000Z", "impl-refs": ["src/deleg.ts"], "waiver": {"reason": "缺签署人"}}])' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+ok "R13c：waiver 三元组缺失 → check 拦截" 1 "$ENGINE" check
+
+# R14 孤儿 goal：无已背书 mission 链 → check 拦截
+jq '(.statements += [{"id": "ORPH-001", "text": "孤儿目标", "level": "goal", "feature": "core", "signatory": "auto", "executable": true, "weight": 1, "version": 1, "derived-from": "spec", "boundary": "无", "elasticity": "无", "created-at": "2026-08-10T00:00:00.000Z", "impl-refs": ["src/deleg.ts"]}])' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+"$ENGINE" endorse ORPH-001 --by tester >/dev/null
+ok "R14：孤儿 goal（无 mission 链）→ check 拦截" 1 "$ENGINE" check
+
+# R13d impl-refs 空白：load_state fail-fast（任何命令 exit 2）
+jq '(.statements += [{"id": "BAD-002", "text": "空白路径", "level": "contract", "feature": "core", "signatory": "auto", "executable": true, "weight": 1, "version": 1, "derived-from": "spec", "boundary": "无", "elasticity": "无", "created-at": "2026-08-10T00:00:00.000Z", "impl-refs": ["src/a b.ts"]}])' abst/registry.json > /tmp/abst-reg.$$ && mv /tmp/abst-reg.$$ abst/registry.json
+ok "R13d：impl-refs 含空白 → fail-fast" 2 "$ENGINE" check
 
 # ---------- 防漂移：engine 双副本一致性 ----------
 if [[ -f "$HERE/../skill/scripts/abst" ]]; then

@@ -7,7 +7,7 @@ description: ABST（Auto Business Statement Testing）业务声明测试体系�
 
 ABST 以意图声明为唯一被测对象，目的是 AI Auto Acceptance。**你是执行者，不是判定者**：判定权在确定性 engine（`scripts/abst`，bash 实现），你的职责是派生、取证、评审——并严格遵守背书咽喉。
 
-方法论本体：<https://github.com/asjayli/abst/blob/main/docs/abst-design.md>（§编号在下文中均指该文档）。
+方法论本体（三篇 + 总索引）：<https://github.com/asjayli/abst/blob/main/docs/abst-design.md>——§一~§三 在思想总纲（abst-philosophy.md）、§四~§十一 在体系设计（abst-system.md）、§十二~§十四 在工程手册（abst-handbook.md）；§编号跨篇连续，下文引用均按此归属解析。
 
 ## 铁律（违反即体系失效）
 
@@ -15,6 +15,7 @@ ABST 以意图声明为唯一被测对象，目的是 AI Auto Acceptance。**你
 2. **派生锚定规格源**：从 openspec/需求文档派生声明（`derived-from: spec`）；只有代码时允许反推起步，但必须标 `derived-from: code` 并在评审时最高优先级质疑——代码→声明→验证代码的链条永远自洽，是盖章机。
 3. **判定只信 engine**：覆盖率、状态、放行结论一律以 `abst report` / `abst gate` 输出为准，不要自己数 registry 下结论（自报 ≠ 事实）。
 4. **VIOLATED 三叉定位**（§九）：先判实现错/声明错/证据错再动手。声明错走升版流程（改 text + version +1），升版后声明自动回 DRAFT 待重新背书——绝不改码迁就声明，也绝不悄悄改声明迁就码。
+5. **执行位置防呆**：abst 命令的作用目录（`--root`，缺省 cwd）必须是**目标业务仓库**——在方法论仓库或其他错误目录执行 init/verify 会把运行时产物写进错误仓库（三实践中已发生一次，2618 行误提交）。每次 init/verify 前核对 pwd 与 `--root`；目标已有 `abst/registry.json` 时 engine 拒绝，勿以 `--force` 绕过人工确认。
 
 ## 命令（engine）
 
@@ -24,9 +25,9 @@ ABST 以意图声明为唯一被测对象，目的是 AI Auto Acceptance。**你
 
 | 命令 | 何时用 |
 | --- | --- |
-| `init` | 目标仓库首次落地：生成 `abst/`（registry、glossary、意图四册模板） |
-| `endorse <id> --by 人` | 人工背书落锤（DRAFT → UNPROVEN）。你只准备材料，由人执行或人明确授权后执行 |
-| `accept <id> --by 人` | `signatory=human` 声明的逐次验收签署 |
+| `init` | 目标仓库首次落地：生成 `abst/`（registry、glossary、意图四册模板、evidence/ 卷宗目录） |
+| `endorse <id\|--ids a,b,c> --by 人` | 人工背书落锤（DRAFT → UNPROVEN）。你只准备材料，由人执行或人明确授权后执行；批量模式先输出逐条清单（id + text）供人过目——**批量是打字效率，逐条审查仍是人工职责，清单没看完不签** |
+| `accept <id\|--ids a,b,c\|--files Δ> --by 人` | `signatory=human` 声明的逐次验收签署；`--files` 按本次变更文件列待签清单一批签署（复证循环用） |
 | `check` / `doctor` | 完整性 + 健康度体检；CI 必跑，退出码非零即体系有债 |
 | `verify` | 证据执行后刷新判定（含回读与 STALE 传播） |
 | `report` | C(G)——永远与批准率、积压成对出现，禁止单独引用 C(G) |
@@ -40,9 +41,9 @@ ABST 以意图声明为唯一被测对象，目的是 AI Auto Acceptance。**你
 3. **停下来交人背书**：输出逐条审查清单（声明文本 + 你的派生依据 + 存疑点），goal/mission 级附异构评审意见（扮演魔鬼代言人质疑"应然合理吗"）；
 4. 人 `endorse` 后才开始取证。
 
-**取证（③④）**：端点有机器可读 schema（zod/OpenAPI）先生成 manifest 再"填空式"写探针；探针结果写入 `evidence-results.json`（`{"<evidence-id>": {"status": "pass|fail"}}`）后跑 `verify`。委托证据按形态登记：static（file+anchor）/ unit（file+marker）/ e2e（resultsFile）——engine 负责回读。
+**取证（③④）**：端点有机器可读 schema（zod/OpenAPI）先生成 manifest 再"填空式"写探针；探针结果写入 `evidence-results.json`（`{"<evidence-id>": {"status": "pass|fail"}}`）后跑 `verify`。委托证据按形态登记：static（file+anchor）/ unit（file+marker）/ e2e（resultsFile）——engine 负责回读。**e2e 卷宗机器契约**：resultsFile 指向的 JSON 顶层 `"pass"` 布尔必填（engine 回读唯一判据），`"at"`（ISO 8601）与 `"note"`（复证叙述：做了什么、改了什么、证据链如何闭合）可选但推荐；卷宗放 `abst/evidence/`，勿与 `volumes/`（意图四册）混放。
 
-**交付**：`gate --files <变更文件>`，通过才可合并；未过按输出清单消账。
+**交付**：`gate --files <变更文件>`，通过才可合并；未过按输出清单消账。**复证循环**：实现变更使 human 声明验收签署失效后，用 `accept --files <本次变更文件> --by 人` 一批重签（engine 先列待签清单）；随后 `verify` → `report` → `gate` 收口。
 
 ## 工具倾向（降 token、防幻觉）
 
